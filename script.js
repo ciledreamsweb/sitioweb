@@ -98,7 +98,7 @@ function renderProducts(productsToShow, containerId) {
                 >
                     ${isOutOfStock ? 'Sin Stock' : 'Agregar al Carrito'}
                 </button>
-                <a href="https://wa.me/5491112345678?text=Hola!%20Me%20interesa%20el%20${encodeURIComponent(product.name)}" 
+                <a href="https://wa.me/5491158626516?text=Hola!%20Me%20interesa%20el%20${encodeURIComponent(product.name)}" 
                    class="btn btn-secondary" target="_blank">Consultar</a>
             </div>
         </div>
