@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contáctanos para consultas sobre nuestros pijamas. WhatsApp, email o formulario de contacto.">
+    <title>Contacto - CileDreams</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5491158626516?text=Hola!%20Quiero%20consultar%20sobre%20los%20pijamas" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="30" r="30" fill="#25D366"/>
+            <path d="M30.5 15C22.5 15 16 21.5 16 29.5C16 32.3 16.9 34.9 18.4 37L16.2 44.8L24.3 42.7C26.3 44 28.8 44.8 31.5 44.8C39.5 44.8 46 38.3 46 30.3C46 22.3 39.5 15 30.5 15ZM39.2 36.8C38.9 37.7 37.4 38.5 36.6 38.6C36 38.7 35.2 38.8 34.3 38.5C33.7 38.3 33 38 32.1 37.6C27.6 35.7 24.7 31.1 24.5 30.8C24.3 30.5 22.7 28.3 22.7 26C22.7 23.7 23.9 22.6 24.3 22.1C24.7 21.6 25.2 21.5 25.5 21.5C25.7 21.5 25.9 21.5 26.1 21.5C26.3 21.5 26.6 21.4 26.9 22.1C27.2 22.8 27.9 24.6 28 24.8C28.1 25 28.2 25.3 28 25.5C27.8 25.8 27.7 26 27.5 26.2C27.3 26.4 27.1 26.7 26.9 26.9C26.7 27.1 26.5 27.3 26.7 27.7C26.9 28.1 27.9 29.7 29.4 31C31.3 32.7 32.8 33.2 33.3 33.4C33.7 33.6 34 33.5 34.2 33.3C34.5 33 35.1 32.3 35.4 31.9C35.7 31.5 36 31.6 36.4 31.7C36.8 31.9 38.6 32.8 39 33C39.4 33.2 39.7 33.3 39.8 33.5C39.9 33.8 39.9 34.5 39.6 35.3C39.5 35.9 39.5 36.4 39.2 36.8Z" fill="white"/>
+        </svg>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CileDreams</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+                <li><a href="carrito.html" class="cart-link">🛒 Carrito (<span id="cartCount">0</span>)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contacto</h1>
+            <p>Estamos aquí para ayudarte</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Hablemos</h2>
+                    <p>¿Tienes alguna pregunta sobre nuestros productos, talles o envíos? Estamos aquí para ayudarte. Contáctanos por el medio que prefieras.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <h3>WhatsApp</h3>
+                                <p>+54 9 11 1234-5678</p>
+                                <a href="https://wa.me/5491112345678?text=Hola!%20Quiero%20consultar%20sobre%20los%20pijamas" target="_blank" class="contact-link">Enviar mensaje</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>info@ciledreams.com</p>
+                                <a href="mailto:info@ciledreams.com" class="contact-link">Enviar email</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Ubicación</h3>
+                                <p>Buenos Aires, Argentina</p>
+                                <p class="text-small">Envíos a todo el país</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">📷</div>
+                            <div>
+                                <h3>Instagram</h3>
+                                <p>@ciledreams</p>
+                                <a href="https://www.instagram.com/ciledreams/" target="_blank" class="contact-link">Seguir en Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-hours">
+                        <h3>Horario de Atención</h3>
+                        <p>Lunes a Viernes: 9:00 - 18:00</p>
+                        <p>Sábados: 10:00 - 14:00</p>
+                        <p>Domingos: Cerrado</p>
+                        <p class="text-small">Respondemos mensajes de WhatsApp e Instagram en 24 horas</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Envíanos un Mensaje</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+54 9 11 1234-5678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Asunto *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="consulta-producto">Consulta sobre Producto</option>
+                                <option value="consulta-talle">Consulta sobre Talles</option>
+                                <option value="consulta-envio">Consulta sobre Envíos</option>
+                                <option value="consulta-stock">Consulta sobre Stock</option>
+                                <option value="regalo">Paquete de Regalo</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product">Producto de Interés</label>
+                            <input type="text" id="product" name="product" placeholder="Ej: Pijama Stitch Remera + Short">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="size">Talle</label>
+                            <select id="size" name="size">
+                                <option value="">Selecciona un talle</option>
+                                <option value="S">S (1) - 36/38</option>
+                                <option value="M">M (2) - 40/42</option>
+                                <option value="L">L (3) - 44/46</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        <p class="form-note">* Campos obligatorios. Te responderemos en 24 horas.</p>
+                    </form>
+                    <div id="formSuccess" class="form-success" style="display: none;">
+                        <p>¡Gracias por tu mensaje! Te contactaremos pronto vía WhatsApp o email. 💙</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>¿Cuál es el tiempo de envío?</h3>
+                    <p>En CABA: 24-48 horas. Resto del país: 3-5 días hábiles vía Correo Argentino.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Cómo elijo mi talle?</h3>
+                    <p>S (1): 36-38, M (2): 40-42, L (3): 44-46. Nuestros pijamas son elásticos y se adaptan cómodamente.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Puedo devolver un producto?</h3>
+                    <p>Sí, aceptamos devoluciones dentro de los 7 días de recibido el producto, en su estado original.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Cómo cuido mi pijama?</h3>
+                    <p>Lavado en frío, no blanquear, secar a la sombra. El material modal mantiene su suavidad por mucho tiempo.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Tienen stock disponible?</h3>
+                    <p>Contáctanos por WhatsApp para consultar stock en tiempo real de tu diseño y talle favorito.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Hacen envíos al interior?</h3>
+                    <p>¡Sí! Enviamos a todo el país. El costo varía según la provincia de destino.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-logo">CileDreams</h3>
+                    <p>Pijamas que abrazan tus sueños. Casa, familia y comodidad = felicidad.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/ciledreams/" target="_blank" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/ciledreams" target="_blank" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul class="footer-links">
+                        <li><a href="#envios">Envíos y Devoluciones</a></li>
+                        <li><a href="#talles">Guía de Talles</a></li>
+                        <li><a href="#cuidado">Cuidado del Producto</a></li>
+                        <li><a href="#privacidad">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul class="footer-contact">
+                        <li>📍 Buenos Aires, Argentina</li>
+                        <li>📧 info@ciledreams.com</li>
+                        <li>📱 WhatsApp: +54 9 11 1234-5678</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CileDreams. Todos los derechos reservados. Hecho con 💙 en Argentina.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CLIENTE DE SUPABASE (IMPORTANTE: DEBE SER tipo "module") -->
+    <script type="module" src="supabase-client.js"></script>
+
+    <!-- TUS SCRIPTS (también deben ser tipo "module" para usar 'import') -->
+    <script type="module" src="script.js"></script>
+    
+    <!-- El script de carrito no necesita ser module si no importa nada -->
+    <!-- <script src="carrito.js"></script> -->
+
+
+    <script src="contacto.js"></script>
+</body>
+</html>
