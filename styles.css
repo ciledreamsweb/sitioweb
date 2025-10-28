@@ -1136,3 +1136,60 @@ ul {
 .product-card .product-size-selector.hidden {
     display: none;
 }
+
+/* ===== CSS PARA MEJORAR EL LOGO Y LA SECCIÓN HERO ===== */
+
+/* 1. Contenedor principal de la sección hero */
+/* Usamos Flexbox para alinear el texto y la imagen fácilmente. */
+.hero {
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto y la imagen */
+  gap: 2rem;           /* Añade un espacio entre el texto y la imagen */
+  min-height: 80vh;    /* Asegura que la sección tenga una buena altura */
+  padding: 4rem 20px;
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-primary) 100%);
+}
+
+/* 2. Contenedores del texto y de la imagen */
+/* Hacemos que cada uno ocupe la mitad del espacio disponible. */
+.hero-content,
+.hero-image {
+  flex: 1; /* Esto hace que ambos divs compartan el espacio por igual */
+}
+
+/* 3. Contenedor específico de la imagen del logo */
+.hero-image {
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente en su contenedor */
+  align-items: center;    /* Centra la imagen verticalmente en su contenedor */
+}
+
+/* 4. Estilos para la imagen del logo */
+.hero-image img {
+  max-width: 100%;        /* La imagen nunca será más ancha que su contenedor */
+  width: 450px;           /* Le damos un tamaño base, pero nunca superará el 100% */
+  height: auto;           /* Mantiene la proporción correcta de la imagen */
+  border-radius: 50%;     /* ¡Esto la hará circular! */
+  object-fit: cover;      /* Asegura que la imagen cubra el círculo sin deformarse */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Añade una sombra sutil para darle profundidad */
+}
+
+/* ===== ADAPTACIÓN PARA MÓVILES (Responsive Design) ===== */
+
+/* Cuando la pantalla sea de 768px o menos (tablets y móviles)... */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse; /* Apila la imagen encima del texto */
+    text-align: center;             /* Centra el texto */
+    padding: 2rem 20px;             /* Reduce el espaciado para pantallas pequeñas */
+  }
+
+  .hero-content {
+    margin-top: 2rem; /* Añade un espacio entre la imagen y el texto */
+  }
+
+  .hero-image img {
+    width: 250px; /* Hacemos el logo más pequeño en móviles */
+    height: 250px;
+  }
+}
