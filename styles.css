@@ -496,8 +496,20 @@ ul {
 }
 
 /* ===== Filters ===== */
-.filters-section {
+.filters-sectio.filters-section {
   padding: 2rem 0;
+  background-color: var(--color-white);
+}
+
+.filters-section {
+  /* CAMBIO CLAVE: Aumentar el padding superior para separarlo del encabezado */
+  padding: 4rem 0; /* Aplicamos 4rem arriba y abajo, o puedes usar 4rem 0 2rem 0 si quieres menos abajo */
+  background-color: var(--color-white);
+}
+
+.filters-section {
+  /* CAMBIO CLAVE 1: Reiniciamos el padding vertical para evitar conflictos con el margen */
+  padding: 2rem 0; /* Mantenemos 2rem para los laterales y la separación inferior de la sección */
   background-color: var(--color-white);
 }
 
@@ -505,21 +517,30 @@ ul {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
-  justify-content: center;
+  /* CAMBIO CLAVE 2: Forzamos la separación superior con un margen explícito y amplio */
+  margin-top: 3rem; 
+  
+  max-width: 500px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  justify-content: flex-start; 
 }
 
 .filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: flex; 
+  align-items: center; 
+  gap: 1rem; 
+  width: 100%; 
 }
 
 .filter-group label {
+  /* Tamaño de fuente corregido (1.1rem) */
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.1rem; 
+  flex-shrink: 0; 
 }
-
 .filter-select {
+  flex-grow: 1; 
   padding: 0.7rem 1rem;
   border: 2px solid var(--color-border);
   border-radius: 10px;
@@ -548,13 +569,26 @@ ul {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* CAMBIO CLAVE: Definimos un template de grilla para la imagen y el texto */
+  /* La primera columna (imagen) será más pequeña, la segunda (texto) más grande. */
+  grid-template-columns: 400px 1fr; /* Cambia de 1fr 1fr a una columna fija de 400px y una columna flexible */
   gap: 3rem;
   align-items: center;
 }
 
+.about-image {
+  /* CAMBIO CLAVE: Aseguramos que el contenedor de la imagen soporte el centrado en móvil */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .about-image img {
-  border-radius: 20px;
+  /* CAMBIO CLAVE: Hacer la imagen circular y de tamaño fijo (como el logo) */
+  width: 400px; /* Tamaño de ancho de la columna */
+  height: 400px; /* Mismo tamaño para hacerla un círculo perfecto */
+  border-radius: 50%; /* ¡Hacerla circular! */
+  object-fit: cover; /* Asegura que la imagen llene el círculo sin deformarse */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -564,11 +598,6 @@ ul {
   color: var(--color-text);
 }
 
-.about-text p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  color: var(--color-text-light);
-}
 
 .values-section,
 .materials-section,
@@ -688,10 +717,12 @@ ul {
   padding: 4rem 0;
 }
 
+/* ELIMINAR LA GRILLA DE DOS COLUMNAS */
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  /* display: grid;  <-- ELIMINADO/SOBREESCRITO */
+  /* grid-template-columns: 1fr 1fr; <-- ELIMINADO/SOBREESCRITO */
+  display: block; /* Ahora fluye como un bloque normal */
+  gap: 3rem; /* Ya no aplica, pero lo dejamos si es necesario en otras paginas */
 }
 
 .contact-info h2 {
@@ -700,14 +731,27 @@ ul {
   color: var(--color-text);
 }
 
-.contact-info > p {
-  margin-bottom: 2rem;
-  color: var(--color-text-light);
-  line-height: 1.8;
+.contact-info {
+    /* Aseguramos que ocupe todo el ancho disponible */
+    width: 100%;
 }
 
+/* 2. NUEVA GRILLA PARA MÉTODOS Y HORARIO */
+.contact-main-grid {
+    display: grid;
+    /* Por defecto en una columna, para móviles */
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* 3. MEJORAS EN LA DISTRIBUCIÓN DE CONTACT-METHODS */
 .contact-methods {
-  margin-bottom: 2rem;
+    /* Hacemos que los métodos se muestren en dos columnas dentro de su contenedor */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 0; /* Ya no necesitamos el margen aquí, la grilla lo maneja */
 }
 
 .contact-method {
@@ -744,9 +788,10 @@ ul {
 }
 
 .contact-hours {
-  padding: 1.5rem;
-  background-color: var(--color-background);
-  border-radius: 15px;
+    padding: 1.5rem;
+    background-color: var(--color-background);
+    border-radius: 15px;
+    height: fit-content; /* Se ajusta a su contenido */
 }
 
 .contact-hours h3 {
@@ -758,6 +803,27 @@ ul {
 .contact-hours p {
   margin-bottom: 0.5rem;
   color: var(--color-text-light);
+}
+
+/* 4. MEDIAS QUERY PARA PC */
+@media (min-width: 992px) {
+    /* En PC, aplicamos la grilla principal de dos columnas */
+    .contact-main-grid {
+        grid-template-columns: 2fr 1fr; /* 2/3 para métodos, 1/3 para horario */
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* En móvil, los contact methods vuelven a apilarse, pero su distribución interna es de dos en dos */
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-method {
+        /* Eliminamos el padding extra para móvil */
+        padding: 1rem;
+    }
 }
 
 .text-small {
@@ -1059,11 +1125,22 @@ ul {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 
-  .about-grid,
-  .contact-grid,
-  .cart-container {
-    grid-template-columns: 1fr;
+    .about-grid {
+    /* CAMBIO CLAVE: Eliminar la grilla y usar flexbox para apilar en el orden deseado */
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    
+    /* CAMBIO CLAVE: Poner la imagen debajo del texto (texto primero, luego imagen) */
+    flex-direction: column-reverse; /* ¡Esto pone la imagen debajo del texto! */
+    gap: 2rem;
   }
+
+  .about-image img {
+    /* Reducimos el tamaño de la imagen en móviles */
+    width: 250px; 
+    height: 250px;
+  }
+}
 
   .newsletter-form {
     flex-direction: column;
@@ -1082,7 +1159,7 @@ ul {
   .cart-item-actions {
     align-items: center;
   }
-}
+
 
 @media (max-width: 480px) {
   .hero-title {
@@ -1124,6 +1201,10 @@ ul {
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.product-size-selector {
+    margin-bottom: 1rem; 
 }
 
 .product-card .btn[disabled] {
@@ -1193,3 +1274,42 @@ ul {
     height: 250px;
   }
 }
+
+/* ===== Image Modal Styles (Lightbox) ===== */
+.modal {
+    display: none; /* Oculto por defecto, se cambia a 'flex' en JS al abrir */
+    position: fixed; /* Posición fija para cubrir toda la pantalla */
+    z-index: 2000; /* Asegura que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9); /* Fondo negro con opacidad */
+    
+    /* MODIFICACIÓN CLAVE PARA CENTRADO ABSOLUTO */
+    align-items: center; 
+    justify-content: center; 
+}
+
+.modal-content {
+    display: block;
+    width: 90%;
+    max-width: 800px; /* Tamaño máximo para la imagen ampliada */
+    max-height: 90vh; /* Altura máxima del 90% del viewport */
+    object-fit: contain; /* Ajusta la imagen sin recortarla */
+    /* Eliminada la animación de zoom, no es necesaria para el fix */
+}
+
+/* Botón de Cierre */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+/* ... (rest of styles.css) ... */

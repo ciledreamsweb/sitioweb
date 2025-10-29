@@ -1,3 +1,5 @@
+--- START OF FILE productos.html ---
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +33,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="productos.html" class="active">Productos</a></li>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="sobre-mi.html">Sobre Mi</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
                 <li><a href="carrito.html" class="cart-link">🛒 Carrito (<span id="cartCount">0</span>)</a></li>
             </ul>
@@ -41,8 +43,8 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Nuestros Productos</h1>
-            <p>Descubre la comodidad perfecta para tus sueños</p>
+            <h1>Todos los pijamas</h1>
+            <p>Descubrí la comodidad perfecta para tus sueños</p>
         </div>
     </section>
 
@@ -51,30 +53,12 @@
         <div class="container">
             <div class="filters">
                 <div class="filter-group">
-                    <label for="categoryFilter">Categoría:</label>
+                    <label for="categoryFilter">¿Qué tipo de pijama estás buscando?</label>
                     <select id="categoryFilter" class="filter-select">
                         <option value="all">Todos</option>
                         <option value="short">Conjuntos Cortos</option>
-                        <option value="long">Conjuntos Largos</option>
-                        <option value="camisero">Camiseros</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="characterFilter">Personaje:</label>
-                    <select id="characterFilter" class="filter-select">
-                        <option value="all">Todos</option>
-                        <option value="stitch">Stitch</option>
-                        <option value="kitty">Hello Kitty</option>
-                        <option value="chimuelo">Chimuelo</option>
-                        <option value="otros">Otros</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="priceFilter">Precio:</label>
-                    <select id="priceFilter" class="filter-select">
-                        <option value="all">Todos</option>
-                        <option value="low">Hasta $28.000</option>
-                        <option value="high">$28.000 - $36.000</option>
+                        <option value="Camisolin">Camisolines</option>
+                        <option value="Camiseros">Camiseros</option>
                     </select>
                 </div>
             </div>
@@ -118,24 +102,21 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="productos.html">Productos</a></li>
-                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="sobre-mi.html">Sobre Mi</a></li>
                         <li><a href="contacto.html">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Información</h4>
                     <ul class="footer-links">
-                        <li><a href="#envios">Envíos y Devoluciones</a></li>
-                        <li><a href="#talles">Guía de Talles</a></li>
-                        <li><a href="#cuidado">Cuidado del Producto</a></li>
-                        <li><a href="#privacidad">Política de Privacidad</a></li>
+                        <li><a href="talles.html">Guía de Talles</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contacto</h4>
                     <ul class="footer-contact">
-                        <li>📍 Buenos Aires, Argentina</li>
-                        <li>📧 info@ciledreams.com</li>
+                        <li>📍 Ciudad de Buenos Aires, Argentina</li>
+                        <li>📧 ciledreams@gmail.com</li>
                         <li>📱 WhatsApp: +54 9 11 5862-6516</li>
                     </ul>
                 </div>
@@ -145,7 +126,11 @@
             </div>
         </div>
     </footer>
-
+    <!-- Image Modal (Lightbox) -->
+    <div id="imageModal" class="modal" style="display:none;">
+        <span class="modal-close-btn" id="closeModal">&times;</span>
+        <img class="modal-content" id="fullImage" alt="Imagen de producto ampliada">
+    </div>
 
     <!-- CLIENTE DE SUPABASE (IMPORTANTE: DEBE SER tipo "module") -->
     <script type="module" src="supabase-client.js"></script>

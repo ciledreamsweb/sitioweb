@@ -29,7 +29,7 @@ if (contactForm) {
     // Opcional: Después de 2 segundos, redirigimos a WhatsApp con un mensaje pre-cargado.
     setTimeout(() => {
       const whatsappMessage = `Hola! Soy ${formData.name}. ${formData.message}`;
-      const whatsappUrl = `https://wa.me/5491112345678?text=${encodeURIComponent(whatsappMessage)}`;
+      const whatsappUrl = `https://wa.me/5491158626516?text=${encodeURIComponent(whatsappMessage)}`;
       window.open(whatsappUrl, "_blank");
     }, 2000);
   });

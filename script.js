@@ -1,3 +1,4 @@
+
 // ===== script.js =====
 
 // Importamos el cliente de Supabase que creamos en el otro archivo.
@@ -65,15 +66,16 @@ function renderProducts(productsToShow, containerId) {
 
     // Generamos las opciones de talle dinámicamente, solo si hay stock para ese talle.
     const sizeOptions = `
-      ${product.stock_s > 0 ? '<option value="S">S (1) - 36/38</option>' : ''}
-      ${product.stock_m > 0 ? '<option value="M">M (2) - 40/42</option>' : ''}
-      ${product.stock_l > 0 ? '<option value="L">L (3) - 44/46</option>' : ''}
+      ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
+      ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
+      ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
     `;
-
+    
     // Devolvemos el HTML de la tarjeta del producto.
     return `
-    <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}">
-        <div class="product-image">
+    <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}">
+        <!-- Clase 'js-open-modal' y data attributes para la Delegación de Eventos -->
+        <div class="product-image js-open-modal" data-image-url="${product.image_url}" data-alt-text="${product.name}">
             <img src="${product.image_url}" alt="${product.name}">
             ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
             ${isOutOfStock ? `<span class="product-badge-stock">Sin Stock</span>` : ""}
@@ -92,8 +94,8 @@ function renderProducts(productsToShow, containerId) {
 
             <div class="product-actions">
                 <button 
-                    class="btn btn-primary" 
-                    onclick="addToCart(${product.id})" 
+                    class="btn btn-primary js-add-to-cart" 
+                    data-product-id="${product.id}" 
                     ${isOutOfStock ? 'disabled' : ''}
                 >
                     ${isOutOfStock ? 'Sin Stock' : 'Agregar al Carrito'}
@@ -104,18 +106,14 @@ function renderProducts(productsToShow, containerId) {
         </div>
     </div>
     `;
-  }).join(''); // .join('') une todos los bloques de HTML en un solo string.
+  }).join('');
 }
 
 // ===== Lógica del Carrito =====
-
-/**
- * Actualiza el número que se muestra en el ícono del carrito en la barra de navegación.
- */
+// ... (funciones updateCartCount y addToCart se mantienen iguales, pero ahora se llama a addToCart desde la delegación)
 function updateCartCount() {
   const cartCount = document.getElementById("cartCount");
   if (cartCount) {
-    // Usamos .reduce() para sumar las cantidades de todos los productos en el carrito.
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItems;
   }
@@ -127,9 +125,8 @@ function updateCartCount() {
  */
 function addToCart(productId) {
   const product = allProducts.find((p) => p.id === productId);
-  if (!product) return; // Si el producto no se encuentra, no hacemos nada.
+  if (!product) return; 
 
-  // Obtenemos el talle que el usuario seleccionó.
   const sizeSelector = document.getElementById(`size-${productId}`);
   const selectedSize = sizeSelector ? sizeSelector.value : null;
 
@@ -138,58 +135,41 @@ function addToCart(productId) {
     return;
   }
   
-  // Buscamos si ya existe un item en el carrito con el mismo ID y el mismo talle.
   const existingItem = cart.find((item) => item.id === productId && item.size === selectedSize);
 
   if (existingItem) {
-    // Si ya existe, solo aumentamos su cantidad.
     existingItem.quantity += 1;
   } else {
-    // Si no existe, creamos un nuevo objeto y lo agregamos al carrito.
     cart.push({
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image_url, // Usamos image_url que viene de Supabase
+      image: product.image_url, 
       quantity: 1,
       size: selectedSize,
     });
   }
 
-  // Guardamos el carrito actualizado en el almacenamiento local del navegador.
   localStorage.setItem("ciledreams_cart", JSON.stringify(cart));
-  // Actualizamos el contador visual del carrito.
   updateCartCount();
-  // Mostramos una confirmación al usuario.
   alert(`${product.name} (Talle: ${selectedSize}) fue agregado al carrito.`);
 }
 
-// Hacemos `addToCart` una función global para que los botones `onclick` en el HTML puedan encontrarla.
-window.addToCart = addToCart;
 
-// ===== Lógica Específica de Cada Página =====
-
-/**
- * Carga los productos destacados en la página de inicio.
- * @param {Array} products - La lista completa de productos.
- */
+// ===== Lógica Específica de Cada Página (Se mantiene) =====
+// ... (funciones loadFeaturedProducts y applyFilters se mantienen)
 function loadFeaturedProducts(products) {
-  // Mostramos los primeros 4 productos como "destacados".
   const featured = products.slice(0, 4);
   renderProducts(featured, "featuredProducts");
 }
 
-/**
- * Filtra y muestra los productos en la página de productos según los filtros seleccionados.
- */
 function applyFilters() {
   const categoryValue = document.getElementById("categoryFilter")?.value || 'all';
   const characterValue = document.getElementById("characterFilter")?.value || 'all';
   const priceValue = document.getElementById("priceFilter")?.value || 'all';
 
-  let filteredProducts = [...allProducts]; // Empezamos con la lista completa.
+  let filteredProducts = [...allProducts];
 
-  // Aplicamos cada filtro uno por uno.
   if (categoryValue !== 'all') {
     filteredProducts = filteredProducts.filter(p => p.category === categoryValue);
   }
@@ -204,36 +184,101 @@ function applyFilters() {
     }
   }
 
-  // Renderizamos solo los productos que pasaron los filtros.
   renderProducts(filteredProducts, 'productsGrid');
 }
 
-// ===== Inicialización y Event Listeners =====
+// ===== Lógica del Visor de Imágenes (Modal / Lightbox) con Event Delegation =====
+
+const imageModal = document.getElementById('imageModal');
+const fullImage = document.getElementById('fullImage');
+const closeModalBtn = document.getElementById('closeModal');
 
 /**
- * El evento 'DOMContentLoaded' se dispara cuando el HTML inicial ha sido completamente cargado y parseado.
- * Es el punto de entrada principal de nuestra aplicación.
+ * Abre el modal de la imagen con la fuente especificada.
+ * @param {string} imageSrc - La URL de la imagen a mostrar.
+ * @param {string} altText - El texto alternativo para la imagen.
  */
+function openModal(imageSrc, altText) {
+  if (!imageModal || !fullImage) return;
+
+  fullImage.src = imageSrc;
+  fullImage.alt = altText;
+  imageModal.style.display = "flex"; // Usar flex para centrar
+}
+
+/**
+ * Cierra el modal de la imagen.
+ */
+function closeModal() {
+  if (imageModal) {
+    imageModal.style.display = "none";
+  }
+}
+
+// Event Listeners para cerrar el modal: Botón 'X' y Clic en el fondo.
+if (closeModalBtn) {
+  closeModalBtn.addEventListener('click', closeModal);
+}
+
+if (imageModal) {
+  imageModal.addEventListener('click', (e) => {
+    // Si el clic fue directamente en el contenedor del modal, cerrarlo.
+    if (e.target === imageModal) {
+      closeModal();
+    }
+  });
+}
+
+
+// ===== Inicialización y Event Listeners (Delegación de Eventos) =====
+
 document.addEventListener("DOMContentLoaded", async () => {
-  updateCartCount(); // Actualizamos el contador del carrito al cargar cualquier página.
+  updateCartCount();
 
-  await fetchProducts(); // Esperamos a que los productos se carguen desde Supabase.
+  await fetchProducts();
 
-  // Verificamos en qué página estamos para ejecutar solo el código necesario.
+  // Ejecución de la lógica específica de la página después de cargar productos
   if (document.getElementById("featuredProducts")) {
-    // Si estamos en la página de inicio...
     loadFeaturedProducts(allProducts);
   }
   
   if (document.getElementById("productsGrid")) {
-    // Si estamos en la página de productos...
-    applyFilters(); // Mostramos todos los productos inicialmente.
-    // Y asignamos el evento 'change' a cada filtro para que se actualice la lista.
+    applyFilters();
     document.getElementById("categoryFilter")?.addEventListener("change", applyFilters);
     document.getElementById("characterFilter")?.addEventListener("change", applyFilters);
     document.getElementById("priceFilter")?.addEventListener("change", applyFilters);
   }
+
+
+  // *** DELEGACIÓN DE EVENTOS PRINCIPAL EN document.body ***
+  document.body.addEventListener('click', (e) => {
+    
+    // 1. Lógica del Modal (Abrir imagen ampliada)
+    // Usamos .closest() para encontrar el ancestro más cercano con la clase 'js-open-modal'
+    const openModalTrigger = e.target.closest('.js-open-modal');
+    if (openModalTrigger) {
+      // Previene cualquier comportamiento de navegación por defecto si el elemento fuera un <a>
+      e.preventDefault(); 
+      const imageUrl = openModalTrigger.dataset.imageUrl;
+      const altText = openModalTrigger.dataset.altText;
+      if (imageUrl) {
+        openModal(imageUrl, altText);
+      }
+      return; // Detiene la ejecución para este clic
+    }
+
+    // 2. Lógica del Carrito (Agregar al Carrito)
+    const addToCartBtn = e.target.closest('.js-add-to-cart');
+    if (addToCartBtn && !addToCartBtn.disabled) {
+      const productId = parseInt(addToCartBtn.dataset.productId);
+      if (productId) {
+        addToCart(productId);
+      }
+    }
+  });
+  // *** FIN DELEGACIÓN DE EVENTOS ***
 });
+
 
 // ===== Código Adicional (Menú, Newsletter, etc.) =====
 
