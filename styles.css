@@ -1259,6 +1259,22 @@ ul {
 
 /* Cuando la pantalla sea de 768px o menos (tablets y móviles)... */
 @media (max-width: 768px) {
+  /* ===== INICIO DE LA CORRECCIÓN PARA EL FILTRO EN MÓVIL ===== */
+  .filter-group {
+    /* Apila la etiqueta y el selector verticalmente */
+    flex-direction: column;
+    /* Alinea la etiqueta a la izquierda para que no se centre */
+    align-items: flex-start;
+    /* Reduce el espacio entre la etiqueta y el selector */
+    gap: 0.5rem; 
+  }
+
+  .filter-select {
+    /* Asegura que el selector ocupe todo el ancho disponible */
+    width: 100%;
+  }
+  /* ===== FIN DE LA CORRECCIÓN ===== */
+  
   .hero {
     flex-direction: column-reverse; /* Apila la imagen encima del texto */
     text-align: center;             /* Centra el texto */

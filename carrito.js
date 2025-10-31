@@ -4,6 +4,18 @@ import { supabase } from './supabase-client.js';
 
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
+// CAMBIO 1: Función para traducir los talles
+// Esta función convierte 'S' en '1', 'M' en '2', etc.
+function getDisplaySize(size) {
+  const sizeMap = {
+    'S': '1',
+    'M': '2',
+    'L': '3'
+  };
+  // Si el talle es S, M, o L, devuelve el número. Si no, devuelve el valor original.
+  return sizeMap[size] || size;
+}
+
 function loadCartItems() {
   const cartItemsContainer = document.getElementById("cartItems");
   const emptyCart = document.getElementById("emptyCart");
@@ -27,7 +39,8 @@ function loadCartItems() {
         <div class="cart-item-image"><img src="${item.image}" alt="${item.name}"></div>
         <div class="cart-item-details">
             <h3>${item.name}</h3>
-            <p>Talle: ${item.size}</p>
+            <!-- CAMBIO 2: Usamos la nueva función para mostrar el talle correcto -->
+            <p>Talle: ${getDisplaySize(item.size)}</p>
             <p>Cantidad: ${item.quantity}</p>
             <p class="cart-item-price">${formatPrice(item.price * item.quantity)}</p>
         </div>
@@ -77,15 +90,13 @@ if (checkoutBtn) {
   checkoutBtn.addEventListener("click", async () => {
     if (cart.length === 0) return;
 
-    // NUEVO: Obtener y validar los datos del cliente
     const customerName = document.getElementById('customerName').value.trim();
     const postalCode = document.getElementById('postalCode').value.trim();
 
     if (!customerName || !postalCode) {
       alert("Por favor, completa tu nombre, apellido y código postal para continuar.");
-      return; // Detiene la ejecución si los campos están vacíos
+      return;
     }
-    // FIN NUEVO
 
     checkoutBtn.disabled = true;
     checkoutBtn.textContent = "Procesando...";
@@ -103,15 +114,19 @@ if (checkoutBtn) {
         if (res.error) throw new Error(`Error al actualizar stock: ${res.error.message}`);
       });
       
-      // NUEVO: Construir el mensaje de WhatsApp con los datos del cliente
+      // CAMBIO 3: Mensaje de WhatsApp mejorado, más limpio y compatible
       let message = `¡Hola! Quiero realizar un pedido:\n\n`;
-      message += `👤 *Cliente:* ${customerName}\n`;
-      message += `📍 *Código Postal:* ${postalCode}\n\n`;
-      message += `--- MI PEDIDO ---\n`;
+      message += `*DATOS DEL CLIENTE*\n`;
+      message += `-------------------\n`;
+      message += `*Nombre:* ${customerName}\n`;
+      message += `*Código Postal:* ${postalCode}\n\n`;
+      message += `*DETALLES DEL PEDIDO*\n`;
+      message += `---------------------\n`;
 
       cart.forEach(item => {
         message += `\n• *Producto:* ${item.name}`;
-        message += `\n  *Talle:* ${item.size}`;
+        // Usamos la función de talle también aquí
+        message += `\n  *Talle:* ${getDisplaySize(item.size)}`;
         message += `\n  *Cantidad:* ${item.quantity}`;
         message += `\n  *Precio:* ${formatPrice(item.price * item.quantity)}`;
       });
@@ -119,8 +134,7 @@ if (checkoutBtn) {
       const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       message += `\n\n*Total del Pedido:* ${formatPrice(total)}`;
       message += `\n\n_Por favor, confirmar disponibilidad y costo de envío._`;
-      // FIN NUEVO
-
+      
       cart = [];
       localStorage.removeItem("ciledreams_cart");
       
