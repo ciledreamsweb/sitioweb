@@ -1,9 +1,25 @@
-// ===== script.js (Completo y Corregido con 'export') =====
+
+
+// ===== script.js (Completo y Corregido con 'export' y Paginación) =====
 
 import { supabase } from './supabase-client.js';
 
 let allProducts = [];
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
+
+// Nuevas variables para paginación (Requisito B)
+const PRODUCT_LIMIT = 9; // Límite inicial y por carga
+let productsOffset = 0;
+let currentFilteredProducts = []; 
+
+// CLAVE (A): Función para barajar un array (Fisher-Yates shuffle)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 async function fetchProducts() {
   try {
@@ -20,6 +36,8 @@ async function fetchProducts() {
   }
 }
 
+// Nota: Esta función renderProducts SÓLO se usará para 'featuredProducts'
+// ya que applyFilters ahora maneja el renderizado paginado para 'productsGrid'
 function renderProducts(productsToShow, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -135,20 +153,116 @@ function addToCart(productId) {
 }
 
 function loadFeaturedProducts(products) {
-  const featured = products.slice(0, 4);
+  // CLAVE (A): Barajar los productos y seleccionar los primeros 6
+  const shuffledProducts = shuffleArray([...products]); 
+  const featured = shuffledProducts.slice(0, 6);
   renderProducts(featured, "featuredProducts");
 }
 
-function applyFilters() {
+function applyFilters(isNewFilter = true) {
     const categoryValue = document.getElementById("categoryFilter")?.value || 'all';
+    const container = document.getElementById('productsGrid');
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const noResults = document.getElementById("noResults");
+    
+    if (!container) return;
+
     let filteredProducts = [...allProducts];
 
     if (categoryValue !== 'all') {
         filteredProducts = filteredProducts.filter(p => p.category === categoryValue);
     }
     
-    renderProducts(filteredProducts, 'productsGrid');
+    currentFilteredProducts = filteredProducts;
+
+    if (isNewFilter) {
+        productsOffset = 0;
+        container.innerHTML = ''; // Limpiar para un nuevo filtro
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+    }
+    
+    // CLAVE (B): Obtener el lote de productos a mostrar
+    const productsToShow = currentFilteredProducts.slice(productsOffset, productsOffset + PRODUCT_LIMIT);
+    
+    if (productsOffset === 0 && productsToShow.length === 0) {
+        // No hay resultados para el filtro
+        if (noResults) noResults.style.display = "block";
+        return;
+    }
+    
+    if (productsToShow.length === 0) {
+        // Ya se cargaron todos los productos
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+        if (noResults) noResults.style.display = "none";
+        return;
+    }
+    
+    if (noResults) noResults.style.display = "none";
+
+    // Generar el HTML para el nuevo lote de productos
+    const newProductsHtml = productsToShow.map(product => {
+      const totalStock = product.stock_s + product.stock_m + product.stock_l;
+      const isOutOfStock = totalStock === 0;
+
+      const sizeOptions = `
+        ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
+        ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
+        ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
+      `;
+      
+      return `
+      <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}">
+          <div class="product-image js-open-modal" data-image-url="${product.image_url}" data-alt-text="${product.name}">
+              <img src="${product.image_url}" alt="${product.name}">
+              ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+              ${isOutOfStock ? `<span class="product-badge-stock">Sin Stock</span>` : ""}
+          </div>
+          <div class="product-info">
+              <h3 class="product-title">${product.name}</h3>
+              <p class="product-description">${product.description}</p>
+              <p class="product-price">${formatPrice(product.price)}</p>
+              
+              <div class="product-size-selector ${isOutOfStock ? 'hidden' : ''}">
+                  <label for="size-${product.id}">Talle:</label>
+                  <select id="size-${product.id}" class="filter-select">
+                      ${sizeOptions.trim() === '' ? '<option disabled>Sin stock</option>' : sizeOptions}
+                  </select>
+              </div>
+
+              <div class="product-actions">
+                  <button 
+                      class="btn btn-primary js-add-to-cart" 
+                      data-product-id="${product.id}" 
+                      ${isOutOfStock ? 'disabled' : ''}
+                  >
+                      ${isOutOfStock ? 'Sin Stock' : 'Agregar al Carrito'}
+                  </button>
+                  <a href="https://wa.me/5491158626516?text=Hola!%20Me%20interesa%20el%20${encodeURIComponent(product.name)}" 
+                     class="btn btn-secondary" target="_blank">Consultar</a>
+              </div>
+          </div>
+      </div>
+      `;
+    }).join('');
+
+    container.insertAdjacentHTML('beforeend', newProductsHtml); // Agregar al final
+    productsOffset += productsToShow.length;
+
+    // Mostrar/Ocultar el botón "Ver más"
+    if (loadMoreBtn) {
+        if (productsOffset < currentFilteredProducts.length) {
+            loadMoreBtn.style.display = 'block';
+        } else {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
 }
+
+// CLAVE (B): Función llamada por el botón "Ver más"
+function loadMoreProducts() {
+    applyFilters(false); // Cargar el siguiente lote
+}
+
 
 const imageModal = document.getElementById('imageModal');
 const fullImage = document.getElementById('fullImage');
@@ -179,8 +293,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (document.getElementById("featuredProducts")) loadFeaturedProducts(allProducts);
   
   if (document.getElementById("productsGrid")) {
-    applyFilters();
-    document.getElementById("categoryFilter")?.addEventListener("change", applyFilters);
+    window.loadMoreProducts = loadMoreProducts; // Hacemos la función global para el onclick del botón
+    
+    applyFilters(true); // Carga inicial (los primeros 9 productos)
+    document.getElementById("categoryFilter")?.addEventListener("change", () => applyFilters(true));
+    
+    // Agregamos el listener al botón "Ver más"
+    document.getElementById("loadMoreBtn")?.addEventListener("click", loadMoreProducts);
   }
 
   document.body.addEventListener('click', (e) => {
