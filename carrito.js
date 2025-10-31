@@ -94,7 +94,7 @@ if (checkoutBtn) {
     const postalCode = document.getElementById('postalCode').value.trim();
 
     if (!customerName || !postalCode) {
-      alert("Por favor, completa tu nombre, apellido y código postal para continuar.");
+      showToast("Por favor, completa tus datos para continuar.", 'error');
       return;
     }
 
@@ -141,12 +141,12 @@ if (checkoutBtn) {
       const whatsappUrl = `https://wa.me/5491158626516?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       
-      alert("¡Pedido enviado! Serás redirigida a WhatsApp. El carrito se ha vaciado.");
+      showToast("¡Pedido enviado! Serás redirigida a WhatsApp.", 'success');
       loadCartItems();
       
     } catch (error) {
       console.error("Error al procesar la compra:", error);
-      alert("Hubo un problema al procesar tu pedido. Por favor, intenta de nuevo.");
+      showToast("Hubo un problema al procesar tu pedido.", 'error');
     } finally {
       checkoutBtn.disabled = false;
       checkoutBtn.textContent = "Finalizar Compra por WhatsApp";

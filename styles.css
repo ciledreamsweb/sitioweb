@@ -1415,3 +1415,45 @@ ul {
     border-color: #83a4ff; /* Un color de acento suave */
     box-shadow: 0 0 0 2px rgba(131, 164, 255, 0.3);
 }
+
+/* ===== Estilos para la Notificación Toast ===== */
+
+.toast {
+    position: fixed; /* Se queda fijo en la pantalla */
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%); /* Centra horizontalmente */
+    background-color: #333;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 2000; /* Asegura que esté por encima de todo */
+    
+    /* Estado inicial (oculto) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 20px); /* Empieza un poco abajo */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estado visible */
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0); /* Sube a su posición final */
+}
+
+/* Tipos de notificación */
+.toast.success {
+    background-color: #28a745; /* Verde para éxito */
+}
+
+.toast.error {
+    background-color: #e85d75; /* Rojo para error */
+}
+
+.toast p {
+    margin: 0;
+    font-weight: 500;
+}

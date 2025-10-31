@@ -113,7 +113,7 @@ function addToCart(productId) {
   const selectedSize = sizeSelector ? sizeSelector.value : null;
 
   if (!selectedSize) {
-    alert("Por favor, selecciona un talle antes de agregar al carrito.");
+    showToast("Por favor, selecciona un talle.", 'error');
     return;
   }
   
@@ -136,7 +136,7 @@ function addToCart(productId) {
   updateCartCount();
   
   // CAMBIO 1: Usamos la nueva función getDisplaySize para mostrar el talle correcto
-  alert(`${product.name} (Talle: ${getDisplaySize(selectedSize)}) fue agregado al carrito.`);
+  showToast(`${product.name} (Talle: ${getDisplaySize(selectedSize)}) fue agregado al carrito.`, 'success');
 }
 
 
@@ -256,3 +256,35 @@ function formatPrice(price) {
     currency: "ARS",
   }).format(price);
 }
+
+// ... al final de tu archivo script.js ...
+
+/**
+ * Muestra una notificación toast en la pantalla.
+ * @param {string} message - El mensaje a mostrar.
+ * @param {string} type - El tipo de notificación ('success' o 'error').
+ */
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('toast-notification');
+  const toastMessage = document.getElementById('toast-message');
+
+  if (!toast || !toastMessage) return;
+
+  // 1. Establecer el mensaje
+  toastMessage.textContent = message;
+
+  // 2. Establecer el tipo (color)
+  toast.className = 'toast'; // Resetea las clases de tipo
+  toast.classList.add(type); // Añade 'success' o 'error'
+
+  // 3. Mostrar el toast
+  toast.classList.add('show');
+
+  // 4. Ocultarlo después de 3 segundos
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Hacemos la función global para que sea accesible desde otros scripts como carrito.js
+window.showToast = showToast;
