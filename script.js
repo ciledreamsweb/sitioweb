@@ -102,6 +102,7 @@ function addToCart(productId) {
     return;
   }
 
+  // REQUISITO (A): Verifica el stock localmente antes de agregar.
   const stockKey = `stock_${selectedSize.toLowerCase()}`;
   const stockForSize = product[stockKey];
   const itemInCart = cart.find((item) => item.id === productId && item.size === selectedSize);
@@ -217,7 +218,6 @@ function formatPrice(price) {
   }).format(price);
 }
 
-// ===== INICIO DE LA MODIFICACIÓN CLAVE =====
 // 1. Añadimos 'export' para que la función sea visible para otros archivos
 export function showToast(message, type = 'success') {
   const toast = document.getElementById('toast-notification');
@@ -236,6 +236,3 @@ export function showToast(message, type = 'success') {
     toast.classList.remove('show');
   }, 3000);
 }
-// 2. Ya no necesitamos hacerla global con 'window'
-// window.showToast = showToast; <-- LÍNEA ELIMINADA
-// ===== FIN DE LA MODIFICACIÓN CLAVE =====
