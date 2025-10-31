@@ -1,11 +1,11 @@
-// ===== script.js =====
+// ===== script.js (Completo y Corregido) =====
 
 // Importamos el cliente de Supabase que creamos en el otro archivo.
 import { supabase } from './supabase-client.js';
 
 // ===== Variables Globales =====
 let allProducts = []; // Aquí guardaremos todos los productos obtenidos de Supabase.
-const cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
+let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
 // ===== Funciones Principales de Productos =====
 
@@ -103,11 +103,12 @@ function updateCartCount() {
 }
 
 /**
- * Agrega un producto al carrito.
+ * Agrega un producto al carrito, validando el stock disponible.
+ * @param {number} productId - El ID del producto a agregar.
  */
 function addToCart(productId) {
   const product = allProducts.find((p) => p.id === productId);
-  if (!product) return; 
+  if (!product) return;
 
   const sizeSelector = document.getElementById(`size-${productId}`);
   const selectedSize = sizeSelector ? sizeSelector.value : null;
@@ -116,7 +117,19 @@ function addToCart(productId) {
     showToast("Por favor, selecciona un talle.", 'error');
     return;
   }
-  
+
+  // --- LÓGICA DE VALIDACIÓN DE STOCK ---
+  const stockKey = `stock_${selectedSize.toLowerCase()}`;
+  const stockForSize = product[stockKey];
+  const itemInCart = cart.find((item) => item.id === productId && item.size === selectedSize);
+  const quantityInCart = itemInCart ? itemInCart.quantity : 0;
+
+  if (quantityInCart >= stockForSize) {
+    showToast(`¡No hay más stock para el talle ${getDisplaySize(selectedSize)}!`, 'error');
+    return;
+  }
+  // --- FIN DE LA VALIDACIÓN ---
+
   const existingItem = cart.find((item) => item.id === productId && item.size === selectedSize);
 
   if (existingItem) {
@@ -126,7 +139,7 @@ function addToCart(productId) {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image_url, 
+      image: product.image_url,
       quantity: 1,
       size: selectedSize,
     });
@@ -135,8 +148,7 @@ function addToCart(productId) {
   localStorage.setItem("ciledreams_cart", JSON.stringify(cart));
   updateCartCount();
   
-  // CAMBIO 1: Usamos la nueva función getDisplaySize para mostrar el talle correcto
-  showToast(`${product.name} (Talle: ${getDisplaySize(selectedSize)}) fue agregado al carrito.`, 'success');
+  showToast(`${product.name} (Talle: ${getDisplaySize(selectedSize)}) fue agregado.`, 'success');
 }
 
 
@@ -175,16 +187,10 @@ function closeModal() {
   }
 }
 
-if (closeModalBtn) {
-  closeModalBtn.addEventListener('click', closeModal);
-}
-if (imageModal) {
-  imageModal.addEventListener('click', (e) => {
-    if (e.target === imageModal) {
-      closeModal();
-    }
-  });
-}
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if (imageModal) imageModal.addEventListener('click', (e) => {
+  if (e.target === imageModal) closeModal();
+});
 
 
 // ===== Inicialización y Event Listeners =====
@@ -192,9 +198,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateCartCount();
   await fetchProducts();
 
-  if (document.getElementById("featuredProducts")) {
-    loadFeaturedProducts(allProducts);
-  }
+  if (document.getElementById("featuredProducts")) loadFeaturedProducts(allProducts);
   
   if (document.getElementById("productsGrid")) {
     applyFilters();
@@ -207,18 +211,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       e.preventDefault(); 
       const imageUrl = openModalTrigger.dataset.imageUrl;
       const altText = openModalTrigger.dataset.altText;
-      if (imageUrl) {
-        openModal(imageUrl, altText);
-      }
+      if (imageUrl) openModal(imageUrl, altText);
       return;
     }
 
     const addToCartBtn = e.target.closest('.js-add-to-cart');
     if (addToCartBtn && !addToCartBtn.disabled) {
       const productId = parseInt(addToCartBtn.dataset.productId);
-      if (productId) {
-        addToCart(productId);
-      }
+      if (productId) addToCart(productId);
     }
   });
 });
@@ -228,24 +228,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
-if (menuToggle) {
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
-}
+if (menuToggle) menuToggle.addEventListener("click", () => navMenu.classList.toggle("active"));
 
-// CAMBIO 2: Añadimos la misma función de ayuda que está en carrito.js
-/**
- * Traduce el talle interno (S, M, L) al talle visible por el cliente (1, 2, 3)
- * @param {string} size - El talle a traducir ('S', 'M', o 'L')
- * @returns {string} - El talle numérico ('1', '2', '3')
- */
 function getDisplaySize(size) {
-  const sizeMap = {
-    'S': '1',
-    'M': '2',
-    'L': '3'
-  };
+  const sizeMap = { 'S': '1', 'M': '2', 'L': '3' };
   return sizeMap[size] || size;
 }
 
@@ -257,34 +243,19 @@ function formatPrice(price) {
   }).format(price);
 }
 
-// ... al final de tu archivo script.js ...
-
-/**
- * Muestra una notificación toast en la pantalla.
- * @param {string} message - El mensaje a mostrar.
- * @param {string} type - El tipo de notificación ('success' o 'error').
- */
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast-notification');
   const toastMessage = document.getElementById('toast-message');
 
   if (!toast || !toastMessage) return;
 
-  // 1. Establecer el mensaje
   toastMessage.textContent = message;
+  toast.className = 'toast';
+  toast.classList.add(type, 'show');
 
-  // 2. Establecer el tipo (color)
-  toast.className = 'toast'; // Resetea las clases de tipo
-  toast.classList.add(type); // Añade 'success' o 'error'
-
-  // 3. Mostrar el toast
-  toast.classList.add('show');
-
-  // 4. Ocultarlo después de 3 segundos
   setTimeout(() => {
     toast.classList.remove('show');
   }, 3000);
 }
 
-// Hacemos la función global para que sea accesible desde otros scripts como carrito.js
 window.showToast = showToast;

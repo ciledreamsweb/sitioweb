@@ -1457,3 +1457,173 @@ ul {
     margin: 0;
     font-weight: 500;
 }
+
+/* ===== NUEVOS ESTILOS PARA EL CARRITO HORIZONTAL ===== */
+
+/* Anulamos el padding del contenedor de items para que las líneas lleguen a los bordes */
+.cart-items {
+  padding: 0;
+}
+
+/* La fila principal de cada producto */
+.cart-item-row {
+  display: grid;
+  /* Definimos las columnas: Imagen, Detalles, Cantidad, Subtotal, Eliminar */
+  grid-template-columns: 100px 1fr 150px 120px 50px;
+  gap: 1.5rem; /* Espacio entre columnas */
+  align-items: center; /* Centra todo verticalmente */
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Quita la línea del último producto para un look más limpio */
+.cart-item-row:last-child {
+  border-bottom: none;
+}
+
+/* Imagen del producto en la fila */
+.cart-item-row .cart-item-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Detalles (Nombre y talle) */
+.cart-item-row .cart-item-details {
+  text-align: left;
+}
+.cart-item-row .cart-item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+.cart-item-row .cart-item-size {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* Cantidad */
+.cart-item-row .cart-item-quantity {
+  justify-self: center; /* Centra el bloque de cantidad en su columna */
+}
+
+/* Subtotal */
+.cart-item-row .cart-item-subtotal {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: right; /* Alinea el precio a la derecha */
+}
+
+/* Botón de eliminar */
+.cart-item-row .cart-item-remove {
+  justify-self: center; /* Centra el botón en su columna */
+}
+.cart-item-row .remove-btn {
+  font-size: 1.8rem; /* Hacemos la 'x' más grande y visible */
+  font-weight: 300;
+  color: var(--color-text-light);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+}
+.cart-item-row .remove-btn:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* ===== ADAPTACIÓN PARA MÓVILES (VISTA MÁS COMPACTA) ===== */
+@media (max-width: 768px) {
+  .cart-item-row {
+    /* En móvil, creamos una grilla de 2x2 para mejor uso del espacio */
+    grid-template-columns: 80px 1fr; /* Columna para imagen y columna para el resto */
+    grid-template-areas: 
+      "image details"
+      "image actions"; /* La imagen ocupa dos filas de alto */
+    padding: 1rem;
+    gap: 0.5rem 1rem;
+  }
+  
+  .cart-item-row .cart-item-image {
+    grid-area: image; /* Asignamos la imagen al área 'image' */
+  }
+  .cart-item-row .cart-item-image img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cart-item-row .cart-item-details {
+    grid-area: details; /* Asignamos los detalles al área 'details' */
+    align-self: center; /* Centramos verticalmente */
+  }
+  
+  /* Creamos un nuevo contenedor para las acciones en el JS, pero si no, las agrupamos con CSS */
+  /* Para no cambiar el JS, agruparemos las acciones en una nueva fila */
+  .cart-item-row {
+    grid-template-areas: 
+      "image details"
+      "actions actions";
+    grid-template-rows: auto auto;
+    row-gap: 1rem;
+  }
+  .cart-item-row .cart-item-details {
+    align-self: start;
+  }
+  /* Agrupamos las acciones visualmente */
+  .cart-item-quantity, .cart-item-subtotal, .cart-item-remove {
+    grid-column: 1 / -1; /* Hacemos que cada uno ocupe toda la fila de abajo */
+    grid-area: actions;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  /* Pequeños ajustes para que se vea bien en la fila de acciones */
+  .cart-item-row .cart-item-quantity {
+    justify-content: flex-start;
+  }
+   .cart-item-row .cart-item-subtotal {
+    font-size: 1.2rem;
+  }
+  .cart-item-row .cart-item-remove {
+    justify-content: flex-end;
+  }
+  /* Ocultamos el título de las columnas en móvil */
+  .cart-item-row .cart-item-details:before,
+  .cart-item-row .cart-item-quantity:before {
+      content: '';
+  }
+}
+
+/* Corrección final para móvil, unificando acciones */
+@media (max-width: 768px) {
+  .cart-item-row {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem 1rem;
+  }
+
+  .cart-item-row .cart-item-image {
+    grid-row: 1 / 3; /* La imagen ocupa 2 filas */
+    align-self: center;
+  }
+
+  .cart-item-row .cart-item-details {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  /* Agrupamos las acciones en la segunda fila */
+  .cart-item-quantity, .cart-item-subtotal, .cart-item-remove {
+      grid-column: 2;
+      grid-row: 2;
+  }
+
+  /* Las distribuimos horizontalmente en esa segunda fila */
+  .cart-item-row .cart-item-quantity { justify-self: start; }
+  .cart-item-row .cart-item-subtotal { justify-self: center; font-size: 1.1rem; }
+  .cart-item-row .cart-item-remove { justify-self: end; }
+}

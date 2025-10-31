@@ -1,18 +1,11 @@
-// ===== carrito.js =====
+// ===== carrito.js (Completo y Corregido para Layout Horizontal) =====
 
 import { supabase } from './supabase-client.js';
 
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
-// CAMBIO 1: Función para traducir los talles
-// Esta función convierte 'S' en '1', 'M' en '2', etc.
 function getDisplaySize(size) {
-  const sizeMap = {
-    'S': '1',
-    'M': '2',
-    'L': '3'
-  };
-  // Si el talle es S, M, o L, devuelve el número. Si no, devuelve el valor original.
+  const sizeMap = { 'S': '1', 'M': '2', 'L': '3' };
   return sizeMap[size] || size;
 }
 
@@ -24,6 +17,7 @@ function loadCartItems() {
   if (!cartItemsContainer) return;
 
   if (cart.length === 0) {
+    cartItemsContainer.innerHTML = ''; // Limpiar por si acaso
     cartItemsContainer.style.display = "none";
     emptyCart.style.display = "block";
     cartSummary.style.display = "none";
@@ -34,39 +28,71 @@ function loadCartItems() {
   emptyCart.style.display = "none";
   cartSummary.style.display = "block";
 
+  // --- INICIO DE LA MODIFICACIÓN CLAVE ---
+  // Nueva estructura HTML en formato de fila con columnas claras
   cartItemsContainer.innerHTML = cart.map(item => `
-    <div class="cart-item">
-        <div class="cart-item-image"><img src="${item.image}" alt="${item.name}"></div>
-        <div class="cart-item-details">
-            <h3>${item.name}</h3>
-            <!-- CAMBIO 2: Usamos la nueva función para mostrar el talle correcto -->
-            <p>Talle: ${getDisplaySize(item.size)}</p>
-            <p>Cantidad: ${item.quantity}</p>
-            <p class="cart-item-price">${formatPrice(item.price * item.quantity)}</p>
+    <div class="cart-item-row">
+        <div class="cart-item-image">
+            <img src="${item.image}" alt="${item.name}">
         </div>
-        <div class="cart-item-actions">
+        <div class="cart-item-details">
+            <h3 class="cart-item-title">${item.name}</h3>
+            <p class="cart-item-size">Talle: ${getDisplaySize(item.size)}</p>
+        </div>
+        <div class="cart-item-quantity">
             <div class="quantity-controls">
                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.size}', -1)">-</button>
                 <span class="quantity-display">${item.quantity}</span>
                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.size}', 1)">+</button>
             </div>
-            <button class="remove-btn" onclick="removeFromCart(${item.id}, '${item.size}')">Eliminar</button>
+        </div>
+        <div class="cart-item-subtotal">
+            ${formatPrice(item.price * item.quantity)}
+        </div>
+        <div class="cart-item-remove">
+            <button class="remove-btn" onclick="removeFromCart(${item.id}, '${item.size}')" title="Eliminar producto">×</button>
         </div>
     </div>`
   ).join("");
+  // --- FIN DE LA MODIFICACIÓN CLAVE ---
 
   updateCartSummary();
   updateCartCount();
 }
 
-function updateQuantity(productId, size, change) {
+/**
+ * Actualiza la cantidad de un item, validando el stock si se está incrementando.
+ */
+async function updateQuantity(productId, size, change) {
   const item = cart.find(item => item.id === productId && item.size === size);
   if (!item) return;
+
+  if (change > 0) {
+    try {
+      const { data: product, error } = await supabase
+        .from('products')
+        .select('stock_s, stock_m, stock_l')
+        .eq('id', productId)
+        .single();
+      if (error) throw new Error("No se pudo verificar el stock.");
+
+      const stockKey = `stock_${size.toLowerCase()}`;
+      if (item.quantity >= product[stockKey]) {
+        showToast('¡No hay más stock disponible!', 'error');
+        return;
+      }
+    } catch (err) {
+      showToast(err.message, 'error');
+      return;
+    }
+  }
+
   item.quantity += change;
   if (item.quantity <= 0) {
     removeFromCart(productId, size);
     return;
   }
+  
   localStorage.setItem("ciledreams_cart", JSON.stringify(cart));
   loadCartItems();
 }
@@ -89,7 +115,7 @@ const checkoutBtn = document.getElementById("checkoutBtn");
 if (checkoutBtn) {
   checkoutBtn.addEventListener("click", async () => {
     if (cart.length === 0) return;
-
+    
     const customerName = document.getElementById('customerName').value.trim();
     const postalCode = document.getElementById('postalCode').value.trim();
 
@@ -102,33 +128,17 @@ if (checkoutBtn) {
     checkoutBtn.textContent = "Procesando...";
 
     try {
-      const stockUpdatePromises = cart.map(item =>
-        supabase.rpc('decrement_stock', {
-          product_id_to_update: item.id,
-          size_to_decrement: item.size,
-          quantity_to_decrement: item.quantity
-        })
-      );
-      const results = await Promise.all(stockUpdatePromises);
-      results.forEach(res => {
-        if (res.error) throw new Error(`Error al actualizar stock: ${res.error.message}`);
-      });
-      
-      // CAMBIO 3: Mensaje de WhatsApp mejorado, más limpio y compatible
-      let message = `¡Hola! Quiero realizar un pedido:\n\n`;
-      message += `*DATOS DEL CLIENTE*\n`;
-      message += `-------------------\n`;
-      message += `*Nombre:* ${customerName}\n`;
-      message += `*Código Postal:* ${postalCode}\n\n`;
-      message += `*DETALLES DEL PEDIDO*\n`;
-      message += `---------------------\n`;
+      const { error } = await supabase.functions.invoke('update-stock', { body: cart });
 
+      if (error) {
+        throw new Error("Uno de los productos ya no tiene stock suficiente.");
+      }
+      
+      let message = `¡Hola! Quiero realizar un pedido:\n\n*DATOS DEL CLIENTE*\n-------------------\n*Nombre:* ${customerName}\n*Código Postal:* ${postalCode}\n\n*DETALLES DEL PEDIDO*\n---------------------\n`;
       cart.forEach(item => {
         message += `\n• *Producto:* ${item.name}`;
-        // Usamos la función de talle también aquí
         message += `\n  *Talle:* ${getDisplaySize(item.size)}`;
         message += `\n  *Cantidad:* ${item.quantity}`;
-        message += `\n  *Precio:* ${formatPrice(item.price * item.quantity)}`;
       });
 
       const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -146,7 +156,7 @@ if (checkoutBtn) {
       
     } catch (error) {
       console.error("Error al procesar la compra:", error);
-      showToast("Hubo un problema al procesar tu pedido.", 'error');
+      showToast(error.message, 'error');
     } finally {
       checkoutBtn.disabled = false;
       checkoutBtn.textContent = "Finalizar Compra por WhatsApp";
@@ -170,5 +180,6 @@ function updateCartCount() {
   }
 }
 
+// Hacemos las funciones globales para que los botones 'onclick' funcionen
 window.updateQuantity = updateQuantity;
 window.removeFromCart = removeFromCart;
