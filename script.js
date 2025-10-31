@@ -1,17 +1,10 @@
-// ===== script.js (Completo y Corregido) =====
+// ===== script.js (Completo y Corregido con 'export') =====
 
-// Importamos el cliente de Supabase que creamos en el otro archivo.
 import { supabase } from './supabase-client.js';
 
-// ===== Variables Globales =====
-let allProducts = []; // Aquí guardaremos todos los productos obtenidos de Supabase.
+let allProducts = [];
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
-// ===== Funciones Principales de Productos =====
-
-/**
- * Obtiene todos los productos desde la base de datos de Supabase.
- */
 async function fetchProducts() {
   try {
     const { data, error } = await supabase.from('products').select('*').order('id');
@@ -27,9 +20,6 @@ async function fetchProducts() {
   }
 }
 
-/**
- * Renderiza (dibuja) una lista de productos en un contenedor HTML específico.
- */
 function renderProducts(productsToShow, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -38,13 +28,12 @@ function renderProducts(productsToShow, containerId) {
 
   if (productsToShow.length === 0) {
     if (noResults) {
-      container.style.display = "none";
+      container.innerHTML = ''; // Limpiar la grilla
       noResults.style.display = "block";
     }
     return;
   }
   
-  container.style.display = "grid";
   if (noResults) noResults.style.display = "none";
 
   container.innerHTML = productsToShow.map(product => {
@@ -72,7 +61,7 @@ function renderProducts(productsToShow, containerId) {
             <div class="product-size-selector ${isOutOfStock ? 'hidden' : ''}">
                 <label for="size-${product.id}">Talle:</label>
                 <select id="size-${product.id}" class="filter-select">
-                    ${sizeOptions}
+                    ${sizeOptions.trim() === '' ? '<option disabled>Sin stock</option>' : sizeOptions}
                 </select>
             </div>
 
@@ -93,19 +82,14 @@ function renderProducts(productsToShow, containerId) {
   }).join('');
 }
 
-// ===== Lógica del Carrito =====
 function updateCartCount() {
-  const cartCount = document.getElementById("cartCount");
-  if (cartCount) {
+  const cartCountElements = document.querySelectorAll("#cartCount");
+  if(cartCountElements.length > 0) {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = totalItems;
+    cartCountElements.forEach(el => el.textContent = totalItems);
   }
 }
 
-/**
- * Agrega un producto al carrito, validando el stock disponible.
- * @param {number} productId - El ID del producto a agregar.
- */
 function addToCart(productId) {
   const product = allProducts.find((p) => p.id === productId);
   if (!product) return;
@@ -118,7 +102,6 @@ function addToCart(productId) {
     return;
   }
 
-  // --- LÓGICA DE VALIDACIÓN DE STOCK ---
   const stockKey = `stock_${selectedSize.toLowerCase()}`;
   const stockForSize = product[stockKey];
   const itemInCart = cart.find((item) => item.id === productId && item.size === selectedSize);
@@ -128,7 +111,6 @@ function addToCart(productId) {
     showToast(`¡No hay más stock para el talle ${getDisplaySize(selectedSize)}!`, 'error');
     return;
   }
-  // --- FIN DE LA VALIDACIÓN ---
 
   const existingItem = cart.find((item) => item.id === productId && item.size === selectedSize);
 
@@ -151,25 +133,22 @@ function addToCart(productId) {
   showToast(`${product.name} (Talle: ${getDisplaySize(selectedSize)}) fue agregado.`, 'success');
 }
 
-
-// ===== Lógica Específica de Cada Página =====
 function loadFeaturedProducts(products) {
   const featured = products.slice(0, 4);
   renderProducts(featured, "featuredProducts");
 }
 
 function applyFilters() {
-  const categoryValue = document.getElementById("categoryFilter")?.value || 'all';
-  let filteredProducts = [...allProducts];
+    const categoryValue = document.getElementById("categoryFilter")?.value || 'all';
+    let filteredProducts = [...allProducts];
 
-  if (categoryValue !== 'all') {
-    filteredProducts = filteredProducts.filter(p => p.category === categoryValue);
-  }
-  
-  renderProducts(filteredProducts, 'productsGrid');
+    if (categoryValue !== 'all') {
+        filteredProducts = filteredProducts.filter(p => p.category === categoryValue);
+    }
+    
+    renderProducts(filteredProducts, 'productsGrid');
 }
 
-// ===== Lógica del Visor de Imágenes (Modal / Lightbox) =====
 const imageModal = document.getElementById('imageModal');
 const fullImage = document.getElementById('fullImage');
 const closeModalBtn = document.getElementById('closeModal');
@@ -192,8 +171,6 @@ if (imageModal) imageModal.addEventListener('click', (e) => {
   if (e.target === imageModal) closeModal();
 });
 
-
-// ===== Inicialización y Event Listeners =====
 document.addEventListener("DOMContentLoaded", async () => {
   updateCartCount();
   await fetchProducts();
@@ -223,9 +200,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-
-// ===== Código Adicional y Funciones de Ayuda =====
-
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 if (menuToggle) menuToggle.addEventListener("click", () => navMenu.classList.toggle("active"));
@@ -243,11 +217,16 @@ function formatPrice(price) {
   }).format(price);
 }
 
-function showToast(message, type = 'success') {
+// ===== INICIO DE LA MODIFICACIÓN CLAVE =====
+// 1. Añadimos 'export' para que la función sea visible para otros archivos
+export function showToast(message, type = 'success') {
   const toast = document.getElementById('toast-notification');
   const toastMessage = document.getElementById('toast-message');
 
-  if (!toast || !toastMessage) return;
+  if (!toast || !toastMessage) {
+    console.error("No se encontró el elemento toast en el HTML.");
+    return;
+  }
 
   toastMessage.textContent = message;
   toast.className = 'toast';
@@ -257,5 +236,6 @@ function showToast(message, type = 'success') {
     toast.classList.remove('show');
   }, 3000);
 }
-
-window.showToast = showToast;
+// 2. Ya no necesitamos hacerla global con 'window'
+// window.showToast = showToast; <-- LÍNEA ELIMINADA
+// ===== FIN DE LA MODIFICACIÓN CLAVE =====

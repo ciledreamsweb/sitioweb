@@ -1,6 +1,10 @@
-// ===== carrito.js (Completo y Corregido para Layout Horizontal) =====
+// ===== carrito.js (Completo y Corregido con 'import') =====
 
 import { supabase } from './supabase-client.js';
+// ===== INICIO DE LA MODIFICACIÓN CLAVE =====
+// Importamos la función específica que necesitamos desde script.js
+import { showToast } from './script.js';
+// ===== FIN DE LA MODIFICACIÓN CLAVE =====
 
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
@@ -17,7 +21,7 @@ function loadCartItems() {
   if (!cartItemsContainer) return;
 
   if (cart.length === 0) {
-    cartItemsContainer.innerHTML = ''; // Limpiar por si acaso
+    cartItemsContainer.innerHTML = '';
     cartItemsContainer.style.display = "none";
     emptyCart.style.display = "block";
     cartSummary.style.display = "none";
@@ -28,8 +32,6 @@ function loadCartItems() {
   emptyCart.style.display = "none";
   cartSummary.style.display = "block";
 
-  // --- INICIO DE LA MODIFICACIÓN CLAVE ---
-  // Nueva estructura HTML en formato de fila con columnas claras
   cartItemsContainer.innerHTML = cart.map(item => `
     <div class="cart-item-row">
         <div class="cart-item-image">
@@ -54,15 +56,11 @@ function loadCartItems() {
         </div>
     </div>`
   ).join("");
-  // --- FIN DE LA MODIFICACIÓN CLAVE ---
 
   updateCartSummary();
   updateCartCount();
 }
 
-/**
- * Actualiza la cantidad de un item, validando el stock si se está incrementando.
- */
 async function updateQuantity(productId, size, change) {
   const item = cart.find(item => item.id === productId && item.size === size);
   if (!item) return;
@@ -180,6 +178,5 @@ function updateCartCount() {
   }
 }
 
-// Hacemos las funciones globales para que los botones 'onclick' funcionen
 window.updateQuantity = updateQuantity;
 window.removeFromCart = removeFromCart;
