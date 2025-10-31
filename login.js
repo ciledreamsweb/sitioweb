@@ -1,4 +1,4 @@
-// ===== login.js =====
+
 import { supabase } from './supabase-client.js';
 
 const loginForm = document.getElementById('login-form');
@@ -10,6 +10,7 @@ const errorMessage = document.getElementById('error-message');
 (async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
+        // CORREGIDO: Usar ruta relativa
         window.location.href = 'admin.html';
     }
 })();
@@ -33,7 +34,8 @@ loginForm.addEventListener('submit', async (e) => {
 
         // Si el login es exitoso, redirigir al dashboard
         if (data.user) {
-            window.location.href = '/admin.html';
+            // CORREGIDO: Usar ruta relativa
+            window.location.href = 'admin.html';
         }
 
     } catch (error) {
