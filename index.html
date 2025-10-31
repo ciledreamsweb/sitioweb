@@ -230,13 +230,16 @@
         <img class="modal-content" id="fullImage" alt="Imagen de producto ampliada">
     </div>
 
+  <!-- ... tu footer y modal ... -->
+
     <!-- CLIENTE DE SUPABASE (IMPORTANTE: DEBE SER tipo "module") -->
     <script type="module" src="supabase-client.js"></script>
 
     <!-- TUS SCRIPTS (también deben ser tipo "module" para usar 'import') -->
     <script type="module" src="script.js"></script>
     
-    <!-- El script de carrito no necesita ser module si no importa nada -->
-    <!-- <script src="carrito.js"></script> -->
+    <!-- El script de carrito DEBE SER module para poder usar 'import' -->
+    <script type="module" src="carrito.js"></script>
+
 </body>
 </html>

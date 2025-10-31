@@ -1313,3 +1313,89 @@ ul {
     cursor: pointer;
 }
 /* ... (rest of styles.css) ... */
+
+/* ===== Guía de Talles ===== */
+.size-guide-section {
+  padding: 4rem 0;
+  background-color: var(--color-white);
+}
+
+.size-guide-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.7;
+}
+
+.size-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.size-guide-card {
+  background-color: var(--color-background);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 450px;
+}
+
+.size-guide-card h3 {
+  font-size: 1.4rem;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.size-guide-card img {
+  border-radius: 10px;
+  max-width: 100%;
+}
+/* ===== Estilos para el Formulario del Carrito ===== */
+
+.checkout-form {
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.form-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: left;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #83a4ff; /* Un color de acento suave */
+    box-shadow: 0 0 0 2px rgba(131, 164, 255, 0.3);
+}
