@@ -10,7 +10,7 @@ const errorMessage = document.getElementById('error-message');
 (async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
-        window.location.href = '/admin.html';
+        window.location.href = 'admin.html';
     }
 })();
 

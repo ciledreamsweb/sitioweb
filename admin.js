@@ -15,7 +15,8 @@ async function checkAuthAndLoadPage() {
 
     if (!session) {
         // Si no hay sesión activa, redirigir a la página de login
-        window.location.href = '/login.html';
+        window.location.href = 'login.html';
+
     } else {
         // Si hay sesión, cargar los productos y configurar la página
         console.log("Usuario autenticado:", session.user.email);
@@ -198,6 +199,6 @@ logoutBtn.addEventListener('click', async () => {
         console.error('Error al cerrar sesión:', error);
     } else {
         // Redirigir al login después de cerrar sesión
-        window.location.href = '/login.html';
+        window.location.href = 'login.html';
     }
 });
