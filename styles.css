@@ -815,7 +815,34 @@ ul {
 }
 
 @media (max-width: 768px) {
-    /* En móvil, los contact methods vuelven a apilarse, pero su distribución interna es de dos en dos */
+/* ===== Fix for About Page Layout (Sobre Mi - SOLUCIÓN B) ===== */
+.about-grid {
+  grid-template-columns: 1fr; /* Apila en una sola columna */
+  gap: 2rem; /* Reduce el espacio */
+}
+
+/* CLAVE: Invertir el orden: Texto (order: 1) va arriba de Imagen (order: 2) */
+.about-image {
+  order: 2; /* Manda la imagen al final */
+}
+
+.about-text {
+  order: 1; /* Manda el texto al inicio */
+  text-align: center; /* Centra el texto */
+}
+
+.about-text h2, 
+.about-text p {
+  text-align: center; /* Asegura que el contenido también se centre */
+}
+
+.about-image img {
+  /* Hacemos la imagen más pequeña para móvil */
+  width: 250px; 
+  height: 250px;
+}
+
+  /* En móvil, los contact methods vuelven a apilarse, pero su distribución interna es de dos en dos */
     .contact-methods {
         grid-template-columns: 1fr;
     }
@@ -1161,15 +1188,24 @@ ul {
   }
   
   /* --- Estilos responsive del carrito --- */
+  /* --- Estilos responsive del carrito (SOLUCIÓN A) --- */
   .cart-item-row {
+    /* CLAVE 1: Ahora tiene 4 filas para organizar mejor los elementos */
     grid-template-columns: 80px 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto auto; 
     gap: 0.5rem 1rem;
     padding: 1rem;
+    border-bottom: 1px solid var(--color-border); /* Asegura que la línea divisoria se mantenga */
+  }
+  
+  .cart-item-row:last-child {
+      border-bottom: none;
   }
   
   .cart-item-row .cart-item-image {
-    grid-row: 1 / 3;
+    /* Ocupa las 4 filas para mantener la imagen centrada */
+    grid-row: 1 / 5; 
+    grid-column: 1;
     align-self: center;
   }
   .cart-item-row .cart-item-image img {
@@ -1179,31 +1215,43 @@ ul {
 
   .cart-item-row .cart-item-details {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 1; /* Fila 1: Título y Talle */
     align-self: end;
   }
   
-  .cart-item-quantity, .cart-item-subtotal, .cart-item-remove {
+  /* CLAVE 2: Convertimos Fila 2 en un contenedor flex para Cantidad y Eliminar */
+  .cart-item-quantity {
       grid-column: 2;
-      grid-row: 2;
-      display: flex;
-      justify-content: space-between;
+      grid-row: 2; /* Fila 2: Cantidad */
+      /* Hacemos que Cantidad, Subtotal y Eliminar ya no peleen por la celda (2,2) */
+      display: flex; /* Mantiene los botones en línea */
+      justify-content: flex-start;
       align-items: center;
-      width: 100%;
+      width: auto;
   }
-
+  
   .cart-item-row .cart-item-subtotal {
+    grid-column: 2;
+    grid-row: 3; /* Fila 3: Precio */
     font-size: 1.1rem;
-    order: 3;
+    font-weight: 700;
+    text-align: left; /* Alineación a la izquierda para mejor lectura */
+    color: var(--color-text);
   }
+  
   .cart-item-row .cart-item-remove {
-      order: 2;
+    grid-column: 2;
+    grid-row: 4; /* Fila 4: Botón Eliminar (solo) */
+    justify-self: flex-start;
+    padding-top: 0.5rem;
   }
-  .cart-item-row .cart-item-quantity {
-      order: 1;
+  
+  /* Sobreescribimos la antigua agrupación que causaba el conflicto */
+  .cart-item-quantity, .cart-item-subtotal, .cart-item-remove {
+    /* Eliminamos las propiedades de solapamiento del CSS anterior */
+    order: unset;
   }
 }
-
 @media (max-width: 480px) {
   .hero-title {
     font-size: 1.5rem;
