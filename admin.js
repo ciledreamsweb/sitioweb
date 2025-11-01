@@ -13,6 +13,7 @@ const newProductBtn = document.getElementById("newProductBtn")
 const cancelBtn = document.getElementById("cancelBtn")
 const formTitle = document.getElementById("formTitle")
 const categoryFilter = document.getElementById("categoryFilter")
+const logoutBtn = document.getElementById("logoutBtn") // <--- NUEVA REFERENCIA
 
 let allProductsData = [] // Caché para los datos de los productos
 
@@ -124,7 +125,6 @@ function filterProducts() {
 }
 
 /**
- /**
  * Muestra el formulario para agregar o editar un producto.
  * @param {object|null} product - El objeto del producto a editar, o null para crear uno nuevo.
  */
@@ -260,10 +260,49 @@ async function handleDelete(productId) {
   }
 }
 
+// =================================================================
+// --- NUEVAS FUNCIONES DE AUTENTICACIÓN ---
+// =================================================================
+
+/**
+ * Cierra la sesión del usuario en Supabase y redirige a login.html.
+ */
+async function handleLogout() {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) {
+    console.error("Error al cerrar sesión:", error.message)
+    alert("Error al cerrar sesión. Inténtalo de nuevo.")
+  } else {
+    // Redirigir al login después de un cierre de sesión exitoso
+    window.location.href = '/login.html'
+  }
+}
+
+/**
+ * Verifica la sesión del usuario. Si no hay sesión, redirige a login.html.
+ * Si hay sesión, procede a cargar los productos.
+ */
+async function checkAuthAndLoad() {
+    // 1. Verificar Autenticación
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+        // No hay sesión activa, redirigir al login
+        window.location.href = '/login.html'; 
+        return;
+    }
+    
+    // 2. Si hay sesión, cargar los productos
+    loadProducts();
+}
+
+
 // ===== Event Listeners =====
 
-// Cargar productos al iniciar
-document.addEventListener("DOMContentLoaded", loadProducts)
+// Cargar productos y verificar sesión al iniciar
+// MODIFICACIÓN: Se llama a checkAuthAndLoad en lugar de loadProducts
+document.addEventListener("DOMContentLoaded", checkAuthAndLoad) 
 
 // Botón para mostrar el formulario de nuevo producto
 newProductBtn.addEventListener("click", () => showForm())
@@ -276,6 +315,9 @@ productForm.addEventListener("submit", handleFormSubmit)
 
 // Filtro de categoría
 categoryFilter.addEventListener("change", filterProducts)
+
+// --- NUEVO LISTENER PARA CERRAR SESIÓN ---
+logoutBtn.addEventListener("click", handleLogout)
 
 // Delegación de eventos para los botones de Editar y Eliminar
 productsTableBody.addEventListener("click", (e) => {
