@@ -99,6 +99,10 @@ function renderProducts(products) {
                         <span class="stock-label">L:</span>
                         <span>${product.stock_l}</span>
                     </div>
+                    <div class="stock-item">
+                        <span class="stock-label">XL:</span>
+                        <span>${product.stock_xl}</span>
+                    </div>
                 </div>
             </td>
             <td class="actions">
@@ -144,6 +148,7 @@ function showForm(product = null) {
     document.getElementById("stock_s").value = product.stock_s || 0
     document.getElementById("stock_m").value = product.stock_m || 0
     document.getElementById("stock_l").value = product.stock_l || 0
+    document.getElementById("stock_xl").value = product.stock_xl || 0 // <-- CORREGIDO: Talle XL
   } else {
     // Modo Creación
     formTitle.textContent = "Agregar Nuevo Producto"
@@ -153,6 +158,7 @@ function showForm(product = null) {
     document.getElementById("stock_s").value = 0
     document.getElementById("stock_m").value = 0
     document.getElementById("stock_l").value = 0
+    document.getElementById("stock_xl").value = 0 // <-- CORREGIDO: Talle XL
   }
   formContainer.style.display = "block"
   formContainer.scrollIntoView({ behavior: "smooth" })
@@ -180,8 +186,10 @@ async function handleFormSubmit(e) {
   const stockS = Number.parseInt(document.getElementById("stock_s").value, 10)
   const stockM = Number.parseInt(document.getElementById("stock_m").value, 10)
   const stockL = Number.parseInt(document.getElementById("stock_l").value, 10)
-
-  if (stockS < 0 || stockM < 0 || stockL < 0) {
+  const stockXL = Number.parseInt(document.getElementById("stock_xl").value, 10) // <-- CORREGIDO: Talle XL
+  
+  // CORREGIDO: Agregamos la validación para stockXL
+  if (stockS < 0 || stockM < 0 || stockL < 0 || stockXL < 0) {
     alert("El stock no puede ser un número negativo. Por favor, corrige los valores.");
     return; // Detiene la ejecución de la función aquí
   }
@@ -221,6 +229,7 @@ async function handleFormSubmit(e) {
     stock_s: stockS,
     stock_m: stockM,
     stock_l: stockL,
+    stock_xl: stockXL, // <-- CORREGIDO: Talle XL
   }
 
   // 4. Guardar los datos en la base de datos

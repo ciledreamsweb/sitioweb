@@ -55,13 +55,15 @@ function renderProducts(productsToShow, containerId) {
   if (noResults) noResults.style.display = "none";
 
   container.innerHTML = productsToShow.map(product => {
-    const totalStock = product.stock_s + product.stock_m + product.stock_l;
+    const totalStock = product.stock_s + product.stock_m + product.stock_l + product.stock_xl;
     const isOutOfStock = totalStock === 0;
 
     const sizeOptions = `
       ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
       ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
       ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
+      ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
+
     `;
     
     return `
@@ -201,13 +203,15 @@ function applyFilters(isNewFilter = true) {
 
     // Generar el HTML para el nuevo lote de productos
     const newProductsHtml = productsToShow.map(product => {
-      const totalStock = product.stock_s + product.stock_m + product.stock_l;
+      const totalStock = product.stock_s + product.stock_m + product.stock_l + product.stock_xl;
       const isOutOfStock = totalStock === 0;
 
       const sizeOptions = `
         ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
         ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
         ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
+        ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
+
       `;
       
       return `

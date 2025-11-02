@@ -82,7 +82,7 @@ async function updateQuantity(productId, size, change) {
       // 1. Verificar stock en la base (sin descontar)
       const { data: product, error } = await supabase
         .from('products')
-        .select('stock_s, stock_m, stock_l')
+        .select('stock_s, stock_m, stock_l, stock_xl')
         .eq('id', productId)
         .single();
       if (error) throw new Error("No se pudo verificar el stock.");
@@ -131,7 +131,7 @@ async function debitStockFromDatabase(cartItems) {
   // 1. Obtenemos el stock actual de todos los productos en el carrito
   const { data: products, error: fetchError } = await supabase
     .from('products')
-    .select('id, stock_s, stock_m, stock_l, name')
+    .select('id, stock_s, stock_m, stock_l, stock_xl, name')
     .in('id', productIds);
   
   if (fetchError || !products) throw new Error("Error al verificar el stock actual en la base de datos.");
