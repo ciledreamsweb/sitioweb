@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- 
+      Este es el sitemap de tu sitio web CileDreams.
+      Ayuda a los motores de búsqueda como Google a descubrir y entender la estructura de tu sitio.
+      - <loc>: La URL exacta de la página.
+      - <lastmod>: La fecha de la última modificación. Es bueno actualizarla si haces cambios importantes.
+      - <changefreq>: La frecuencia con la que crees que la página cambiará (yearly, monthly, weekly, daily).
+      - <priority>: La importancia de esta página en relación con las otras (de 0.1 a 1.0).
+    -->
+
+    <!-- Página Principal - La más importante -->
+    <url>
+        <loc>https://www.ciledreams.com.ar/index.html</loc>
+        <lastmod>2025-11-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Página de Productos - Muy importante, se actualiza con nuevos pijamas -->
+    <url>
+        <loc>https://www.ciledreams.com.ar/productos.html</loc>
+        <lastmod>2025-11-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Guía de Talles - Información útil que no cambia a menudo -->
+    <url>
+        <loc>https://www.ciledreams.com.ar/talles.html</loc>
+        <lastmod>2025-11-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Página Sobre Mí - Contenido estático -->
+    <url>
+        <loc>https://www.ciledreams.com.ar/sobre-mi.html</loc>
+        <lastmod>2025-11-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Página de Contacto - Contenido estático -->
+    <url>
+        <loc>https://www.ciledreams.com.ar/contacto.html</loc>
+        <lastmod>2025-11-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <!-- 
+      NOTA: La página del carrito (carrito.html) se ha omitido intencionadamente. 
+      No aporta valor a los motores de búsqueda y es una buena práctica no incluirla en el sitemap.
+    -->
+
+</urlset>
