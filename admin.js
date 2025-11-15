@@ -13,9 +13,28 @@ const newProductBtn = document.getElementById("newProductBtn")
 const cancelBtn = document.getElementById("cancelBtn")
 const formTitle = document.getElementById("formTitle")
 const categoryFilter = document.getElementById("categoryFilter")
-const logoutBtn = document.getElementById("logoutBtn") // <--- NUEVA REFERENCIA
+const logoutBtn = document.getElementById("logoutBtn")
+const categoryFormSelect = document.getElementById("category"); // Referencia al select de categoría del formulario
 
 let allProductsData = [] // Caché para los datos de los productos
+
+/**
+ * Muestra u oculta los campos de stock según la categoría seleccionada en el formulario.
+ */
+function toggleStockFields() {
+    const selectedCategory = categoryFormSelect.value;
+    const stockTallesContainer = document.getElementById('stockTalles');
+    const stockUnicoContainer = document.getElementById('stockUnico');
+    const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
+
+    if (oneSizeCategories.includes(selectedCategory)) {
+        stockTallesContainer.style.display = 'none';
+        stockUnicoContainer.style.display = 'block';
+    } else {
+        stockTallesContainer.style.display = 'grid';
+        stockUnicoContainer.style.display = 'none';
+    }
+}
 
 /**
  * Carga todos los productos de Supabase y los muestra en la tabla.
@@ -64,7 +83,6 @@ function renderProducts(products) {
   products.forEach((product) => {
     const row = document.createElement("tr")
 
-    // Determinar el nombre de la categoría para mostrar
     const categoryNames = {
       short: "Conjuntos Cortos",
       Camisolin: "Camisolines",
@@ -72,8 +90,28 @@ function renderProducts(products) {
       Remerones: "Remerones",
       "Remera y Short": "Remera + Short",
     }
-
     const categoryDisplay = categoryNames[product.category] || product.category
+
+    let stockHtml;
+    const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
+
+    if (oneSizeCategories.includes(product.category)) {
+        stockHtml = `
+            <div class="stock-indicator">
+                <div class="stock-item">
+                    <span class="stock-label">Único:</span>
+                    <span>${product.stock_s}</span>
+                </div>
+            </div>`;
+    } else {
+        stockHtml = `
+            <div class="stock-indicator">
+                <div class="stock-item"><span class="stock-label">S:</span><span>${product.stock_s || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">M:</span><span>${product.stock_m || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">L:</span><span>${product.stock_l || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">XL:</span><span>${product.stock_xl || 0}</span></div>
+            </div>`;
+    }
 
     row.innerHTML = `
             <td>
@@ -85,26 +123,7 @@ function renderProducts(products) {
             </td>
             <td>${categoryDisplay}</td>
             <td style="font-weight: 500;">$${Number.parseFloat(product.price).toFixed(2)}</td>
-            <td>
-                <div class="stock-indicator">
-                    <div class="stock-item">
-                        <span class="stock-label">S:</span>
-                        <span>${product.stock_s}</span>
-                    </div>
-                    <div class="stock-item">
-                        <span class="stock-label">M:</span>
-                        <span>${product.stock_m}</span>
-                    </div>
-                    <div class="stock-item">
-                        <span class="stock-label">L:</span>
-                        <span>${product.stock_l}</span>
-                    </div>
-                    <div class="stock-item">
-                        <span class="stock-label">XL:</span>
-                        <span>${product.stock_xl}</span>
-                    </div>
-                </div>
-            </td>
+            <td>${stockHtml}</td>
             <td class="actions">
                 <button class="btn btn-warning edit-btn" data-id="${product.id}">Editar</button>
                 <button class="btn btn-danger delete-btn" data-id="${product.id}">Eliminar</button>
@@ -134,6 +153,8 @@ function filterProducts() {
  */
 function showForm(product = null) {
   productForm.reset()
+  const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
+
   if (product) {
     // Modo Edición
     formTitle.textContent = "Editar Producto"
@@ -144,25 +165,37 @@ function showForm(product = null) {
     document.getElementById("image_url").value = product.image_url
     document.getElementById("category").value = product.category
     document.getElementById("badge").value = product.badge || ""
-    // --- MODIFICACIÓN: Aseguramos que el stock nunca sea null, se convierte en 0 ---
-    document.getElementById("stock_s").value = product.stock_s || 0
-    document.getElementById("stock_m").value = product.stock_m || 0
-    document.getElementById("stock_l").value = product.stock_l || 0
-    document.getElementById("stock_xl").value = product.stock_xl || 0 // <-- CORREGIDO: Talle XL
+    
+    if (oneSizeCategories.includes(product.category)) {
+        document.getElementById("stock_unico_input").value = product.stock_s || 0;
+        document.getElementById("stock_s").value = 0;
+        document.getElementById("stock_m").value = 0;
+        document.getElementById("stock_l").value = 0;
+        document.getElementById("stock_xl").value = 0;
+    } else {
+        document.getElementById("stock_unico_input").value = 0;
+        document.getElementById("stock_s").value = product.stock_s || 0;
+        document.getElementById("stock_m").value = product.stock_m || 0;
+        document.getElementById("stock_l").value = product.stock_l || 0;
+        document.getElementById("stock_xl").value = product.stock_xl || 0;
+    }
   } else {
     // Modo Creación
     formTitle.textContent = "Agregar Nuevo Producto"
     document.getElementById("productId").value = ""
     document.getElementById("image_url").value = ""
-    // --- MODIFICACIÓN: Establecemos los valores por defecto en 0 ---
     document.getElementById("stock_s").value = 0
     document.getElementById("stock_m").value = 0
     document.getElementById("stock_l").value = 0
-    document.getElementById("stock_xl").value = 0 // <-- CORREGIDO: Talle XL
+    document.getElementById("stock_xl").value = 0
+    document.getElementById("stock_unico_input").value = 0
   }
+
+  toggleStockFields();
   formContainer.style.display = "block"
   formContainer.scrollIntoView({ behavior: "smooth" })
 }
+
 /**
  * Oculta el formulario.
  */
@@ -172,8 +205,7 @@ function hideForm() {
 }
 
 /**
- * Maneja el envío del formulario para crear o actualizar un producto,
- * incluyendo la subida de la imagen y la validación de stock no negativo.
+ * Maneja el envío del formulario para crear o actualizar un producto.
  * @param {Event} e - El evento de envío del formulario.
  */
 async function handleFormSubmit(e) {
@@ -182,23 +214,29 @@ async function handleFormSubmit(e) {
   const imageFile = document.getElementById("image_file").files[0]
   let imageUrl = document.getElementById("image_url").value
 
-  // --- NUEVA SECCIÓN: VALIDACIÓN DE STOCK NO NEGATIVO ---
-  const stockS = Number.parseInt(document.getElementById("stock_s").value, 10)
-  const stockM = Number.parseInt(document.getElementById("stock_m").value, 10)
-  const stockL = Number.parseInt(document.getElementById("stock_l").value, 10)
-  const stockXL = Number.parseInt(document.getElementById("stock_xl").value, 10) // <-- CORREGIDO: Talle XL
+  const selectedCategory = document.getElementById("category").value;
+  const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
+  let stockS, stockM, stockL, stockXL;
+
+  if (oneSizeCategories.includes(selectedCategory)) {
+      stockS = Number.parseInt(document.getElementById("stock_unico_input").value, 10);
+      stockM = 0;
+      stockL = 0;
+      stockXL = 0;
+  } else {
+      stockS = Number.parseInt(document.getElementById("stock_s").value, 10);
+      stockM = Number.parseInt(document.getElementById("stock_m").value, 10);
+      stockL = Number.parseInt(document.getElementById("stock_l").value, 10);
+      stockXL = Number.parseInt(document.getElementById("stock_xl").value, 10);
+  }
   
-  // CORREGIDO: Agregamos la validación para stockXL
   if (stockS < 0 || stockM < 0 || stockL < 0 || stockXL < 0) {
     alert("El stock no puede ser un número negativo. Por favor, corrige los valores.");
-    return; // Detiene la ejecución de la función aquí
+    return;
   }
-  // --- FIN DE LA NUEVA SECCIÓN ---
 
-  // 1. Lógica de subida de imagen
   if (imageFile) {
     const fileName = `public/${Date.now()}-${imageFile.name}`
-
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("product-images")
       .upload(fileName, imageFile)
@@ -217,22 +255,19 @@ async function handleFormSubmit(e) {
     return
   }
 
-  // 3. Preparar los datos del producto para la base de datos
   const productData = {
     name: document.getElementById("name").value,
     price: Number.parseFloat(document.getElementById("price").value),
     description: document.getElementById("description").value,
     image_url: imageUrl,
-    category: document.getElementById("category").value,
+    category: selectedCategory,
     badge: document.getElementById("badge").value,
-    // Usamos las variables ya validadas
     stock_s: stockS,
     stock_m: stockM,
     stock_l: stockL,
-    stock_xl: stockXL, // <-- CORREGIDO: Talle XL
+    stock_xl: stockXL,
   }
 
-  // 4. Guardar los datos en la base de datos
   let error
   if (productId) {
     const { error: updateError } = await supabase.from("products").update(productData).eq("id", productId)
@@ -250,6 +285,7 @@ async function handleFormSubmit(e) {
     loadProducts()
   }
 }
+
 /**
  * Maneja la eliminación de un producto.
  * @param {string} productId - El ID del producto a eliminar.
@@ -258,9 +294,7 @@ async function handleDelete(productId) {
   if (!confirm("¿Estás seguro de que quieres eliminar este producto? Esta acción no se puede deshacer.")) {
     return
   }
-
   const { error } = await supabase.from("products").delete().eq("id", productId)
-
   if (error) {
     alert("Error al eliminar el producto: " + error.message)
   } else {
@@ -270,76 +304,46 @@ async function handleDelete(productId) {
 }
 
 // =================================================================
-// --- NUEVAS FUNCIONES DE AUTENTICACIÓN ---
+// --- FUNCIONES DE AUTENTICACIÓN ---
 // =================================================================
 
-/**
- * Cierra la sesión del usuario en Supabase y redirige a login.html.
- */
 async function handleLogout() {
   const { error } = await supabase.auth.signOut()
-
   if (error) {
     console.error("Error al cerrar sesión:", error.message)
     alert("Error al cerrar sesión. Inténtalo de nuevo.")
   } else {
-    // Redirigir al login después de un cierre de sesión exitoso
     window.location.href = '/login.html'
   }
 }
 
-/**
- * Verifica la sesión del usuario. Si no hay sesión, redirige a login.html.
- * Si hay sesión, procede a cargar los productos.
- */
 async function checkAuthAndLoad() {
-    // 1. Verificar Autenticación
     const { data: { session } } = await supabase.auth.getSession();
-
     if (!session) {
-        // No hay sesión activa, redirigir al login
         window.location.href = '/login.html'; 
         return;
     }
-    
-    // 2. Si hay sesión, cargar los productos
     loadProducts();
 }
 
-
 // ===== Event Listeners =====
-
-// Cargar productos y verificar sesión al iniciar
-// MODIFICACIÓN: Se llama a checkAuthAndLoad en lugar de loadProducts
 document.addEventListener("DOMContentLoaded", checkAuthAndLoad) 
-
-// Botón para mostrar el formulario de nuevo producto
 newProductBtn.addEventListener("click", () => showForm())
-
-// Botón para cancelar y ocultar el formulario
 cancelBtn.addEventListener("click", hideForm)
-
-// Enviar el formulario
 productForm.addEventListener("submit", handleFormSubmit)
-
-// Filtro de categoría
 categoryFilter.addEventListener("change", filterProducts)
-
-// --- NUEVO LISTENER PARA CERRAR SESIÓN ---
 logoutBtn.addEventListener("click", handleLogout)
+categoryFormSelect.addEventListener('change', toggleStockFields); // Listener para el formulario
 
-// Delegación de eventos para los botones de Editar y Eliminar
 productsTableBody.addEventListener("click", (e) => {
   const target = e.target
   const productId = target.dataset.id
-
   if (target.classList.contains("edit-btn")) {
     const productToEdit = allProductsData.find((p) => p.id == productId)
     if (productToEdit) {
       showForm(productToEdit)
     }
   }
-
   if (target.classList.contains("delete-btn")) {
     handleDelete(productId)
   }

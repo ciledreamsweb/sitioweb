@@ -1,14 +1,19 @@
-// ===== carrito.js (Corregido: Usando múltiples 'update' para mayor estabilidad) =====
+// ===== carrito.js =====
 
 import { supabase } from './supabase-client.js';
-// Importamos la función showToast desde script.js
 import { showToast } from './script.js';
 
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
 function getDisplaySize(size) {
-  const sizeMap = { 'S': '1', 'M': '2', 'L': '3' };
+  if (size === 'U') return 'Único';
+  const sizeMap = { 'S': '1', 'M': '2', 'L': '3', 'XL': '4' };
   return sizeMap[size] || size;
+}
+
+function getStockKey(size) {
+    const dbSize = (size === 'U') ? 's' : size.toLowerCase();
+    return `stock_${dbSize}`;
 }
 
 function formatPrice(price) {
@@ -72,14 +77,12 @@ function loadCartItems() {
   updateCartCount();
 }
 
-// REQUISITO (A) - Límite de stock al modificar cantidad (sin descontar)
 async function updateQuantity(productId, size, change) {
   const item = cart.find(item => item.id === productId && item.size === size);
   if (!item) return;
 
   if (change > 0) {
     try {
-      // 1. Verificar stock en la base (sin descontar)
       const { data: product, error } = await supabase
         .from('products')
         .select('stock_s, stock_m, stock_l, stock_xl')
@@ -87,7 +90,7 @@ async function updateQuantity(productId, size, change) {
         .single();
       if (error) throw new Error("No se pudo verificar el stock.");
 
-      const stockKey = `stock_${size.toLowerCase()}`;
+      const stockKey = getStockKey(size);
       if (item.quantity >= product[stockKey]) {
         showToast('¡No hay más stock disponible!', 'error');
         return;
@@ -122,13 +125,11 @@ function updateCartSummary() {
   if(totalEl) totalEl.textContent = formatPrice(subtotal);
 }
 
-// FUNCIÓN CLAVE CORREGIDA: Débito de stock usando múltiples 'update'
 async function debitStockFromDatabase(cartItems) {
   if (cartItems.length === 0) return { success: true };
   
   const productIds = [...new Set(cartItems.map(item => item.id))];
 
-  // 1. Obtenemos el stock actual de todos los productos en el carrito
   const { data: products, error: fetchError } = await supabase
     .from('products')
     .select('id, stock_s, stock_m, stock_l, stock_xl, name')
@@ -143,10 +144,9 @@ async function debitStockFromDatabase(cartItems) {
   
   const updatePromises = [];
 
-  // 2. Verificación de stock y preparación de las promesas de actualización
   for (const item of cartItems) {
     const product = productMap[item.id];
-    const stockKey = `stock_${item.size.toLowerCase()}`;
+    const stockKey = getStockKey(item.size);
     
     if (!product) throw new Error(`Producto ID ${item.id} no encontrado.`);
 
@@ -154,54 +154,41 @@ async function debitStockFromDatabase(cartItems) {
     const requiredQuantity = item.quantity;
 
     if (currentStock < requiredQuantity) {
-      // Si el stock es insuficiente, lanzamos un error que detendrá el Promise.all
       throw new Error(`¡Stock insuficiente para ${product.name} (Talle: ${getDisplaySize(item.size)})!`);
     }
 
     const newStockValue = currentStock - requiredQuantity;
     
-    // Preparamos el objeto de actualización: solo la columna de stock cambia
     let updateObject = {};
     updateObject[stockKey] = newStockValue;
     
-    // Creamos la promesa de actualización individual (update + eq)
     const updatePromise = supabase
       .from('products')
       .update(updateObject)
       .eq('id', item.id)
-      .select(); // El select es opcional, pero ayuda a debuggear
+      .select();
 
     updatePromises.push(updatePromise);
   }
   
-  // 3. Ejecución de las actualizaciones
-  // Promise.all espera que todas las promesas se resuelvan. Si una falla, falla todo el bloque.
-  // Esto simula una transacción (rollback) de forma simple en el frontend.
   try {
       const results = await Promise.all(updatePromises);
-      
-      // Chequeamos si alguno de los resultados individuales tiene un error (aunque Promise.all ya lo haría)
       for (const result of results) {
           if (result.error) {
-              // Lanzamos el primer error encontrado
               console.error("Error en una actualización de stock individual:", result.error);
               throw new Error("Error al guardar la actualización de stock en la base de datos.");
           }
       }
   } catch(e) {
-      // El error de stock insuficiente o el error de la base se captura aquí
       console.error("Error al actualizar el stock:", e);
-      // Relanzamos el error para que sea capturado por el bloque 'catch' principal
       throw e.message.includes('Stock insuficiente') ? e : new Error("Error interno al actualizar el stock. Contacte a soporte.");
   }
 
   return { success: true };
 }
 
-
 const checkoutBtn = document.getElementById("checkoutBtn");
 if (checkoutBtn) {
-  // REQUISITO (B): Descontar el stock de la base al hacer click en checkout
   checkoutBtn.addEventListener("click", async () => {
     if (cart.length === 0) return;
     
@@ -215,13 +202,11 @@ if (checkoutBtn) {
 
     checkoutBtn.disabled = true;
     checkoutBtn.textContent = "Procesando...";
-    const cartSnapshot = [...cart]; // Copia del carrito para el mensaje
+    const cartSnapshot = [...cart];
 
     try {
-      // 1. DEBITAR STOCK DIRECTAMENTE EN LA BASE DE DATOS
-      await debitStockFromDatabase(cartSnapshot); // Usamos la función corregida
+      await debitStockFromDatabase(cartSnapshot);
       
-      // 2. Si el débito fue exitoso, procede a generar el mensaje de WhatsApp:
       let message = `¡Hola! Quiero realizar un pedido:\n\n*DATOS DEL CLIENTE*\n-------------------\n*Nombre:* ${customerName}\n*Código Postal:* ${postalCode}\n\n*DETALLES DEL PEDIDO*\n---------------------\n`;
       cartSnapshot.forEach(item => {
         message += `\n• *Producto:* ${item.name}`;
@@ -233,7 +218,6 @@ if (checkoutBtn) {
       message += `\n\n*Total del Pedido:* ${formatPrice(total)}`;
       message += `\n\n_Por favor, confirmar disponibilidad y costo de envío._`;
       
-      // 3. Limpia el carrito solo si el débito de stock fue exitoso
       cart = [];
       localStorage.removeItem("ciledreams_cart");
       
@@ -245,7 +229,6 @@ if (checkoutBtn) {
       
     } catch (error) {
       console.error("Error al procesar la compra:", error);
-      // Muestra el mensaje de error específico de stock o el genérico
       showToast(error.message || 'Error desconocido al procesar la compra.', 'error');
     } finally {
       checkoutBtn.disabled = false;
@@ -258,6 +241,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCartItems();
 });
 
-// Hacemos las funciones globales para que los onclick de loadCartItems funcionen
 window.updateQuantity = updateQuantity;
 window.removeFromCart = removeFromCart;
