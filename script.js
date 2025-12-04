@@ -1,5 +1,3 @@
-
-
 // ===== script.js (Completo y Corregido con 'export' y Paginación) =====
 
 import { supabase } from './supabase-client.js';
@@ -7,12 +5,12 @@ import { supabase } from './supabase-client.js';
 let allProducts = [];
 let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
-// Nuevas variables para paginación (Requisito B)
-const PRODUCT_LIMIT = 9; // Límite inicial y por carga
+// Nuevas variables para paginación
+const PRODUCT_LIMIT = 9; 
 let productsOffset = 0;
 let currentFilteredProducts = []; 
 
-// CLAVE (A): Función para barajar un array (Fisher-Yates shuffle)
+// Función para barajar un array (Fisher-Yates shuffle)
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -55,17 +53,42 @@ function renderProducts(productsToShow, containerId) {
   if (noResults) noResults.style.display = "none";
 
   container.innerHTML = productsToShow.map(product => {
-    const totalStock = product.stock_s + product.stock_m + product.stock_l + product.stock_xl;
+    
+    // --- LÓGICA DE TALLES Y STOCK ---
+    let totalStock = 0;
+    let sizeOptions = '';
+
+    if (product.category === 'Pijamas para niños') {
+        totalStock = (product.stock_6 || 0) + (product.stock_8 || 0) + (product.stock_10 || 0) + 
+                     (product.stock_12 || 0) + (product.stock_14 || 0) + (product.stock_16 || 0);
+        
+        sizeOptions = `
+            ${product.stock_6 > 0 ? '<option value="6">6</option>' : ''}
+            ${product.stock_8 > 0 ? '<option value="8">8</option>' : ''}
+            ${product.stock_10 > 0 ? '<option value="10">10</option>' : ''}
+            ${product.stock_12 > 0 ? '<option value="12">12</option>' : ''}
+            ${product.stock_14 > 0 ? '<option value="14">14</option>' : ''}
+            ${product.stock_16 > 0 ? '<option value="16">16</option>' : ''}
+        `;
+    } else if (['Maxitoallon', 'Lona Playera'].includes(product.category)) {
+         totalStock = product.stock_s || 0; 
+         sizeOptions = product.stock_s > 0 ? '<option value="U">Único</option>' : '';
+    } else {
+        // Lógica estándar S-XL
+        totalStock = (product.stock_s || 0) + (product.stock_m || 0) + 
+                     (product.stock_l || 0) + (product.stock_xl || 0);
+        
+        sizeOptions = `
+            ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
+            ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
+            ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
+            ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
+        `;
+    }
+    // ---------------------------------
+
     const isOutOfStock = totalStock === 0;
 
-    const sizeOptions = `
-      ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
-      ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
-      ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
-      ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
-
-    `;
-    
     return `
     <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}">
         <div class="product-image js-open-modal" data-image-url="${product.image_url}" data-alt-text="${product.name}">
@@ -122,8 +145,12 @@ function addToCart(productId) {
     return;
   }
 
-  // REQUISITO (A): Verifica el stock localmente antes de agregar.
-  const stockKey = `stock_${selectedSize.toLowerCase()}`;
+  // Verifica el stock localmente antes de agregar.
+  // Si selecciona "6", key es "stock_6". Si es "S", es "stock_s"
+  let stockKey;
+  if(selectedSize === 'U') stockKey = 'stock_s';
+  else stockKey = `stock_${selectedSize.toLowerCase()}`;
+
   const stockForSize = product[stockKey];
   const itemInCart = cart.find((item) => item.id === productId && item.size === selectedSize);
   const quantityInCart = itemInCart ? itemInCart.quantity : 0;
@@ -155,7 +182,7 @@ function addToCart(productId) {
 }
 
 function loadFeaturedProducts(products) {
-  // CLAVE (A): Barajar los productos y seleccionar los primeros 6
+  // Barajar los productos y seleccionar los primeros 6
   const shuffledProducts = shuffleArray([...products]); 
   const featured = shuffledProducts.slice(0, 6);
   renderProducts(featured, "featuredProducts");
@@ -183,7 +210,7 @@ function applyFilters(isNewFilter = true) {
         if (loadMoreBtn) loadMoreBtn.style.display = 'none';
     }
     
-    // CLAVE (B): Obtener el lote de productos a mostrar
+    // Obtener el lote de productos a mostrar
     const productsToShow = currentFilteredProducts.slice(productsOffset, productsOffset + PRODUCT_LIMIT);
     
     if (productsOffset === 0 && productsToShow.length === 0) {
@@ -203,16 +230,40 @@ function applyFilters(isNewFilter = true) {
 
     // Generar el HTML para el nuevo lote de productos
     const newProductsHtml = productsToShow.map(product => {
-      const totalStock = product.stock_s + product.stock_m + product.stock_l + product.stock_xl;
+      
+      // --- LÓGICA DE TALLES Y STOCK REPETIDA (para consistencia) ---
+      let totalStock = 0;
+      let sizeOptions = '';
+
+      if (product.category === 'Pijamas para niños') {
+          totalStock = (product.stock_6 || 0) + (product.stock_8 || 0) + (product.stock_10 || 0) + 
+                       (product.stock_12 || 0) + (product.stock_14 || 0) + (product.stock_16 || 0);
+          
+          sizeOptions = `
+              ${product.stock_6 > 0 ? '<option value="6">6</option>' : ''}
+              ${product.stock_8 > 0 ? '<option value="8">8</option>' : ''}
+              ${product.stock_10 > 0 ? '<option value="10">10</option>' : ''}
+              ${product.stock_12 > 0 ? '<option value="12">12</option>' : ''}
+              ${product.stock_14 > 0 ? '<option value="14">14</option>' : ''}
+              ${product.stock_16 > 0 ? '<option value="16">16</option>' : ''}
+          `;
+      } else if (['Maxitoallon', 'Lona Playera'].includes(product.category)) {
+           totalStock = product.stock_s || 0; 
+           sizeOptions = product.stock_s > 0 ? '<option value="U">Único</option>' : '';
+      } else {
+          totalStock = (product.stock_s || 0) + (product.stock_m || 0) + 
+                       (product.stock_l || 0) + (product.stock_xl || 0);
+          
+          sizeOptions = `
+              ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
+              ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
+              ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
+              ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
+          `;
+      }
+      // -------------------------------------------------------------
+
       const isOutOfStock = totalStock === 0;
-
-      const sizeOptions = `
-        ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
-        ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
-        ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
-        ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
-
-      `;
       
       return `
       <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}">
@@ -262,7 +313,7 @@ function applyFilters(isNewFilter = true) {
     }
 }
 
-// CLAVE (B): Función llamada por el botón "Ver más"
+// Función llamada por el botón "Ver más"
 function loadMoreProducts() {
     applyFilters(false); // Cargar el siguiente lote
 }
@@ -329,7 +380,8 @@ const navMenu = document.getElementById("navMenu");
 if (menuToggle) menuToggle.addEventListener("click", () => navMenu.classList.toggle("active"));
 
 function getDisplaySize(size) {
-  const sizeMap = { 'S': '1', 'M': '2', 'L': '3' };
+  if (!isNaN(size)) return size; // Si es número, lo devuelve tal cual
+  const sizeMap = { 'S': '1', 'M': '2', 'L': '3', 'XL': '4' };
   return sizeMap[size] || size;
 }
 
@@ -341,7 +393,6 @@ function formatPrice(price) {
   }).format(price);
 }
 
-// 1. Añadimos 'export' para que la función sea visible para otros archivos
 export function showToast(message, type = 'success') {
   const toast = document.getElementById('toast-notification');
   const toastMessage = document.getElementById('toast-message');

@@ -25,14 +25,21 @@ function toggleStockFields() {
     const selectedCategory = categoryFormSelect.value;
     const stockTallesContainer = document.getElementById('stockTalles');
     const stockUnicoContainer = document.getElementById('stockUnico');
+    const stockNinosContainer = document.getElementById('stockNinos'); // Nuevo contenedor para niños
+    
     const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
+    
+    // Ocultar todo primero
+    stockTallesContainer.style.display = 'none';
+    stockUnicoContainer.style.display = 'none';
+    stockNinosContainer.style.display = 'none';
 
     if (oneSizeCategories.includes(selectedCategory)) {
-        stockTallesContainer.style.display = 'none';
         stockUnicoContainer.style.display = 'block';
+    } else if (selectedCategory === 'Pijamas para niños') {
+        stockNinosContainer.style.display = 'grid'; // Mostrar grid de niños
     } else {
-        stockTallesContainer.style.display = 'grid';
-        stockUnicoContainer.style.display = 'none';
+        stockTallesContainer.style.display = 'grid'; // Mostrar grid S-XL
     }
 }
 
@@ -89,6 +96,7 @@ function renderProducts(products) {
       Camiseros: "Camiseros",
       Remerones: "Remerones",
       "Remera y Short": "Remera + Short",
+      "Pijamas para niños": "Pijamas para niños"
     }
     const categoryDisplay = categoryNames[product.category] || product.category
 
@@ -102,6 +110,16 @@ function renderProducts(products) {
                     <span class="stock-label">Único:</span>
                     <span>${product.stock_s}</span>
                 </div>
+            </div>`;
+    } else if (product.category === 'Pijamas para niños') {
+        stockHtml = `
+            <div class="stock-indicator">
+                <div class="stock-item"><span class="stock-label">6:</span><span>${product.stock_6 || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">8:</span><span>${product.stock_8 || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">10:</span><span>${product.stock_10 || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">12:</span><span>${product.stock_12 || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">14:</span><span>${product.stock_14 || 0}</span></div>
+                <div class="stock-item"><span class="stock-label">16:</span><span>${product.stock_16 || 0}</span></div>
             </div>`;
     } else {
         stockHtml = `
@@ -155,6 +173,14 @@ function showForm(product = null) {
   productForm.reset()
   const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
 
+  // Reiniciar valores visuales de niños
+  document.getElementById("stock_6").value = 0;
+  document.getElementById("stock_8").value = 0;
+  document.getElementById("stock_10").value = 0;
+  document.getElementById("stock_12").value = 0;
+  document.getElementById("stock_14").value = 0;
+  document.getElementById("stock_16").value = 0;
+
   if (product) {
     // Modo Edición
     formTitle.textContent = "Editar Producto"
@@ -167,12 +193,30 @@ function showForm(product = null) {
     document.getElementById("badge").value = product.badge || ""
     
     if (oneSizeCategories.includes(product.category)) {
+        // Talle único
         document.getElementById("stock_unico_input").value = product.stock_s || 0;
+        // Reset otros
         document.getElementById("stock_s").value = 0;
         document.getElementById("stock_m").value = 0;
         document.getElementById("stock_l").value = 0;
         document.getElementById("stock_xl").value = 0;
+    } else if (product.category === 'Pijamas para niños') {
+        // Talles niños
+        document.getElementById("stock_6").value = product.stock_6 || 0;
+        document.getElementById("stock_8").value = product.stock_8 || 0;
+        document.getElementById("stock_10").value = product.stock_10 || 0;
+        document.getElementById("stock_12").value = product.stock_12 || 0;
+        document.getElementById("stock_14").value = product.stock_14 || 0;
+        document.getElementById("stock_16").value = product.stock_16 || 0;
+         // Reset otros
+         document.getElementById("stock_s").value = 0;
+         document.getElementById("stock_m").value = 0;
+         document.getElementById("stock_l").value = 0;
+         document.getElementById("stock_xl").value = 0;
+         document.getElementById("stock_unico_input").value = 0;
+
     } else {
+        // Talles estándar S-XL
         document.getElementById("stock_unico_input").value = 0;
         document.getElementById("stock_s").value = product.stock_s || 0;
         document.getElementById("stock_m").value = product.stock_m || 0;
@@ -216,21 +260,32 @@ async function handleFormSubmit(e) {
 
   const selectedCategory = document.getElementById("category").value;
   const oneSizeCategories = ['Maxitoallon', 'Lona Playera'];
-  let stockS, stockM, stockL, stockXL;
+  
+  // Objeto base de stock (todo en 0)
+  let stockData = {
+      stock_s: 0, stock_m: 0, stock_l: 0, stock_xl: 0,
+      stock_6: 0, stock_8: 0, stock_10: 0, stock_12: 0, stock_14: 0, stock_16: 0
+  };
 
   if (oneSizeCategories.includes(selectedCategory)) {
-      stockS = Number.parseInt(document.getElementById("stock_unico_input").value, 10);
-      stockM = 0;
-      stockL = 0;
-      stockXL = 0;
+      stockData.stock_s = Number.parseInt(document.getElementById("stock_unico_input").value, 10);
+  } else if (selectedCategory === 'Pijamas para niños') {
+      stockData.stock_6 = Number.parseInt(document.getElementById("stock_6").value, 10);
+      stockData.stock_8 = Number.parseInt(document.getElementById("stock_8").value, 10);
+      stockData.stock_10 = Number.parseInt(document.getElementById("stock_10").value, 10);
+      stockData.stock_12 = Number.parseInt(document.getElementById("stock_12").value, 10);
+      stockData.stock_14 = Number.parseInt(document.getElementById("stock_14").value, 10);
+      stockData.stock_16 = Number.parseInt(document.getElementById("stock_16").value, 10);
   } else {
-      stockS = Number.parseInt(document.getElementById("stock_s").value, 10);
-      stockM = Number.parseInt(document.getElementById("stock_m").value, 10);
-      stockL = Number.parseInt(document.getElementById("stock_l").value, 10);
-      stockXL = Number.parseInt(document.getElementById("stock_xl").value, 10);
+      stockData.stock_s = Number.parseInt(document.getElementById("stock_s").value, 10);
+      stockData.stock_m = Number.parseInt(document.getElementById("stock_m").value, 10);
+      stockData.stock_l = Number.parseInt(document.getElementById("stock_l").value, 10);
+      stockData.stock_xl = Number.parseInt(document.getElementById("stock_xl").value, 10);
   }
   
-  if (stockS < 0 || stockM < 0 || stockL < 0 || stockXL < 0) {
+  // Validación básica: que no haya negativos
+  const allStockValues = Object.values(stockData);
+  if (allStockValues.some(val => val < 0)) {
     alert("El stock no puede ser un número negativo. Por favor, corrige los valores.");
     return;
   }
@@ -262,10 +317,7 @@ async function handleFormSubmit(e) {
     image_url: imageUrl,
     category: selectedCategory,
     badge: document.getElementById("badge").value,
-    stock_s: stockS,
-    stock_m: stockM,
-    stock_l: stockL,
-    stock_xl: stockXL,
+    ...stockData // Esparcimos los valores de stock (s, m, l, xl, 6, 8...)
   }
 
   let error

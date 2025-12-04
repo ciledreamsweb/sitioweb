@@ -7,13 +7,18 @@ let cart = JSON.parse(localStorage.getItem("ciledreams_cart")) || [];
 
 function getDisplaySize(size) {
   if (size === 'U') return 'Único';
+  // Si es numérico (para niños), devolver el número
+  if (!isNaN(size)) return size;
+  
   const sizeMap = { 'S': '1', 'M': '2', 'L': '3', 'XL': '4' };
   return sizeMap[size] || size;
 }
 
 function getStockKey(size) {
-    const dbSize = (size === 'U') ? 's' : size.toLowerCase();
-    return `stock_${dbSize}`;
+    if (size === 'U') return 'stock_s';
+    // Si es numérico (ej: "6"), devuelve "stock_6"
+    // Si es letra (ej: "S"), devuelve "stock_s"
+    return `stock_${size.toLowerCase()}`;
 }
 
 function formatPrice(price) {
@@ -83,9 +88,10 @@ async function updateQuantity(productId, size, change) {
 
   if (change > 0) {
     try {
+      // Pedimos también las columnas de niños
       const { data: product, error } = await supabase
         .from('products')
-        .select('stock_s, stock_m, stock_l, stock_xl')
+        .select('stock_s, stock_m, stock_l, stock_xl, stock_6, stock_8, stock_10, stock_12, stock_14, stock_16')
         .eq('id', productId)
         .single();
       if (error) throw new Error("No se pudo verificar el stock.");
@@ -130,9 +136,10 @@ async function debitStockFromDatabase(cartItems) {
   
   const productIds = [...new Set(cartItems.map(item => item.id))];
 
+  // Solicitamos TODAS las columnas de stock posibles
   const { data: products, error: fetchError } = await supabase
     .from('products')
-    .select('id, stock_s, stock_m, stock_l, stock_xl, name')
+    .select('id, stock_s, stock_m, stock_l, stock_xl, stock_6, stock_8, stock_10, stock_12, stock_14, stock_16, name')
     .in('id', productIds);
   
   if (fetchError || !products) throw new Error("Error al verificar el stock actual en la base de datos.");
