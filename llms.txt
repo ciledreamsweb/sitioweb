@@ -1,0 +1,202 @@
+# CileDreams
+
+> CileDreams es una marca argentina (Ciudad de Buenos Aires) de pijamas de diseño en modal y lycra: camisolines, remerones, conjuntos de remera con short o culote, camiseros y pijamas para niños, con estampas de personajes como Stitch, Hello Kitty, Mickey, Minnie y Chimuelo. Envíos a todo el país. Ventas por la web y WhatsApp (+54 9 11 5862-6516).
+
+## Información clave
+- [Todos los productos](https://www.ciledreams.com.ar/productos.html): catálogo completo.
+- [Guía de talles](https://www.ciledreams.com.ar/talles.html): tablas de medidas.
+- [Sobre CileDreams](https://www.ciledreams.com.ar/sobre-mi.html): historia de la marca.
+- [Contacto](https://www.ciledreams.com.ar/contacto.html): consultas y pedidos.
+- Telas: modal y lycra, suaves, frescas y livianas. Moneda: pesos argentinos (ARS).
+- Catálogo completo en texto: https://www.ciledreams.com.ar/llms-full.txt
+
+## Culote y remera
+- [Remera + Culote. Palta](https://www.ciledreams.com.ar/producto/remera-culote-palta-27/): Tela: lycra y modal liviano. Color: blanco con estampa de paltas divertidas. Suave, fresco y cómodo para descansar o dormir 🌙 Precio $ 8.000,00 (sin stock).
+- [Remera + Culote. Chanchitos ](https://www.ciledreams.com.ar/producto/remera-culote-chanchitos-49/): Tela: lycra y modal liviano. Color: blanco con estampa de Pato (Gravity Falls). Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 10.000,00 (sin stock).
+- [Remera + Culote. Mickey](https://www.ciledreams.com.ar/producto/remera-culote-mickey-50/): Tela: lycra y modal liviano. Color: remera blanca y culote gris con detalles en rojo. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 10.000,00.
+- [Remera + culote stitch](https://www.ciledreams.com.ar/producto/remera-culote-stitch-117/): Conjunto Remerón + Culotte – Stitch Súper cómodo, fresco y con una estampa adorable. Este conjunto incluye remerón amplio y culotte al tono, Precio $ 10.000,00.
+- [Remera + culote chicas superpoderosas](https://www.ciledreams.com.ar/producto/remera-culote-chicas-superpoderosas-118/): Conjunto Remerón + Culotte – Chicas Superpoderosas Cómodo, fresco y con una estampa que nos llena de nostalgia. Este conjunto incluye remeró Precio $ 10.000,00.
+- [Remera + culote hello kitty](https://www.ciledreams.com.ar/producto/remera-culote-hello-kitty-119/): Conjunto Remerón + Culotte – Hello Kitty Dulce, cómodo y súper femenino. Este conjunto incluye remerón amplio y culotte al tono, confecciona Precio $ 10.000,00 (sin stock).
+
+## Remerones
+- [Remerón Stitch](https://www.ciledreams.com.ar/producto/remeron-stitch-28/): Tela: lycra y modal liviano. Color: celeste con estampa de Stitch ✨. Corte amplio y cómodo, ideal para relajarte con onda y suavidad 💫 Precio $ 22.000,00.
+- [Remerón. Mafalda](https://www.ciledreams.com.ar/producto/remeron-mafalda-64/): Tela: lycra y modal liviano. Color: celeste con estampa de Mafalda y detalles en rojo ❤️. Corte amplio, suave y cómodo. Precio $ 22.000,00 (sin stock).
+- [Remerón. Betty Boop](https://www.ciledreams.com.ar/producto/remeron-betty-boop-65/): Tela: lycra y modal liviano. Color: rojo con estampa de Betty Boop 🔥. Corte amplio, suave y cómodo, ideal para estar con estilo ✨. Precio $ 22.000,00.
+- [Remerón. Minnie](https://www.ciledreams.com.ar/producto/remeron-minnie-66/): Tela: lycra y modal liviano. Color: gris con estampa de Minnie en tonos rosa y negro 🐭. Cómodo, suave y con un toque dulce ideal para relaj Precio $ 22.000,00 (sin stock).
+- [Remerón. Snoopy](https://www.ciledreams.com.ar/producto/remeron-snoopy-67/): Tela: lycra y modal liviano. Color: celeste con estampa de Snoopy y Woodstock ✨. Suave, cómodo y con un estilo súper tierno para tus momento Precio $ 22.000,00 (sin stock).
+- [Remerón Simpson](https://www.ciledreams.com.ar/producto/remeron-simpson-69/): Remerón Los Simpson Remerón de modal con lycra, super suave y cómodo. Estampa completa con los personajes más divertidos de Los Simpson. Ide Precio $ 22.000,00.
+- [Remerón Oso Panda](https://www.ciledreams.com.ar/producto/remeron-oso-panda-70/): Remerón Ositos Panda Remerón de modal con lycra, suave, fresco y muy cómodo. Diseño con adorables pandas y hojas de bambú. Ideal para descan Precio $ 22.000,00.
+
+## Camisolin
+- [Camisolin Hello Kitty](https://www.ciledreams.com.ar/producto/camisolin-hello-kitty-29/): Tela: lycra y modal. Color: rosa. Suave, fresco y cómodo, ideal para dormir liviana y con estilo 🌙 Precio $ 22.000,00.
+- [Camisolín Chanchitos](https://www.ciledreams.com.ar/producto/camisolin-chanchitos-36/): Tela: lycra y modal. Color: rosa. Estampa: Pato (mascota de Gravity Falls). Suave, fresco y cómodo, ideal para dormir liviana y con estilo � Precio $ 20.000,00 (sin stock).
+- [Camisolín Chimuelo](https://www.ciledreams.com.ar/producto/camisolin-chimuelo-37/): Tela: lycra y modal. Color: negro con detalles en blanco y verde. Suave, fresco y cómodo, ideal para dormir liviana y con estilo 🌙 Precio $ 20.000,00 (sin stock).
+- [Camisolín Minnie](https://www.ciledreams.com.ar/producto/camisolin-minnie-38/): Tela: lycra y modal. Color: gris. Suave, fresco y cómodo, ideal para dormir liviana y con estilo 🌙 Precio $ 20.000,00 (sin stock).
+- [Camisolin Animal Print](https://www.ciledreams.com.ar/producto/camisolin-animal-print-116/): Camisolín Animal Print Súper cómodo, suave y liviano. Este camisolín con estampa animal print es ideal para dormir fresca y con estilo. Conf Precio $ 20.000,00 (sin stock).
+
+## Camiseros
+- [Camisero Chimuelo](https://www.ciledreams.com.ar/producto/camisero-chimuelo-30/): Tela: lycra y modal. Conjunto camisero + Short Suave. Fresco y súper cómodo 🌙 Precio $ 38.500,00.
+- [Camisero MIckey](https://www.ciledreams.com.ar/producto/camisero-mickey-31/): Tela: lycra y modal. Conjunto camisero blanco + short gris. Suave, fresco y súper cómodo para tus noches de descanso 🌙 Precio $ 38.500,00 (sin stock).
+- [Camisero Minnie](https://www.ciledreams.com.ar/producto/camisero-minnie-32/): Tela: lycra y modal. Color: gris. Conjunto camisero + short. Suave, fresco y súper cómodo para descansar con estilo 🌙 Precio $ 38.500,00.
+- [Camisero Animal Print](https://www.ciledreams.com.ar/producto/camisero-animal-print-33/): Tela: lycra y modal. Color: animal print. Conjunto camisero + short. Suave, fresco y con mucho estilo para tus noches 🌙 Precio $ 38.500,00 (sin stock).
+- [Camisero Hello Kitty](https://www.ciledreams.com.ar/producto/camisero-hello-kitty-34/): Tela: lycra y modal. Color: rosa. Conjunto camisero + short. Suave, fresco y lleno de ternura para tus noches 🌙 Precio $ 38.500,00 (sin stock).
+- [Camisero Stitch](https://www.ciledreams.com.ar/producto/camisero-stitch-35/): Tela: lycra y modal Color: celeste con detalles rosa. Conjunto camisero + short. Suave, fresco y súper cómodo para tus noches 🌙 Precio $ 38.500,00.
+- [Camisero Minnie ](https://www.ciledreams.com.ar/producto/camisero-minnie-71/): Conjunto Camisero Gris Minnie Conjunto de modal con lycra, super suave y cómodo. Incluye camisa con botones y short. Estampa de Minnie en to Precio $ 38.500,00.
+- [Camisero Mickey](https://www.ciledreams.com.ar/producto/camisero-mickey-72/): Conjunto Camisero Blanco y Gris Mickey Camisero de modal con lycra, liviano, suave y muy cómodo. Incluye camisa con botones y short. Estampa Precio $ 38.500,00 (sin stock).
+- [Camisero Bety Boop](https://www.ciledreams.com.ar/producto/camisero-bety-boop-73/):  Precio $ 38.500,00 (sin stock).
+- [camisero snoopy](https://www.ciledreams.com.ar/producto/camisero-snoopy-111/): Pijama Snoopy – Modal & Lycra Disfrutá de este conjunto súper cómodo y liviano, ideal para dormir o estar en casa. Incluye camisita manga co Precio $ 38.500,00 (sin stock).
+- [Camisero hello kitty blanco](https://www.ciledreams.com.ar/producto/camisero-hello-kitty-blanco-112/): Pijama camisero Hello Kitty – Blanco Súper cómodo y fresco, ideal para todo el año. Conjunto de camisa y short en tela liviana, suave al tac Precio $ 38.500,00.
+- [Camisero minnie rosa](https://www.ciledreams.com.ar/producto/camisero-minnie-rosa-113/): Pijama camisero Minnie – Rosa Dormí cómoda y con onda con este camisero de Minnie en tono rosa pastel. Conjunto de camisa + short, confeccio Precio $ 38.500,00.
+- [Camisero Mickey Gris](https://www.ciledreams.com.ar/producto/camisero-mickey-gris-114/): Pijama camisero Mickey – Gris Un clásico que nunca falla ✨ Este camisero de Mickey en tono gris marmolado es súper cómodo, liviano y suave a Precio $ 38.500,00 (sin stock).
+- [Camisero Mickey Celeste](https://www.ciledreams.com.ar/producto/camisero-mickey-celeste-115/): Pijama camisero Mickey – Celeste Dulce, cómodo y súper fresco. Este camisero de Mickey en tono celeste pastel es ideal para descansar con es Precio $ 38.500,00 (sin stock).
+
+## Remera corta y pantalon largo
+- [Pijama Looney Tunes](https://www.ciledreams.com.ar/producto/pijama-looney-tunes-39/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Estampa divertida de Piolín y Silvestre 🐦🐱. Suave, fresco y cóm Precio $ 28.000,00.
+- [Pijama Monster Inc](https://www.ciledreams.com.ar/producto/pijama-monster-inc-40/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Color: celeste con detalles en verde y violeta. Estampa de Sulliv Precio $ 28.000,00.
+- [Pijama Stitch](https://www.ciledreams.com.ar/producto/pijama-stitch-41/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Color: celeste con detalles en rosa. Suave, fresco y cómodo para  Precio $ 28.000,00.
+- [Pijama Mickey](https://www.ciledreams.com.ar/producto/pijama-mickey-42/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Color: gris con detalles celestes. Suave, fresco y cómodo para de Precio $ 28.000,00.
+- [Pijama Garfield](https://www.ciledreams.com.ar/producto/pijama-garfield-43/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Color: remera blanca y pantalón azul con estampa de Garfield. Sua Precio $ 28.000,00.
+- [Pijama Marie](https://www.ciledreams.com.ar/producto/pijama-marie-44/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Color: rosa con estampa de la gatita Marie 🐱🎀. Suave, fresco y  Precio $ 28.000,00.
+- [Pijama Hello Kitty](https://www.ciledreams.com.ar/producto/pijama-hello-kitty-45/): Tela: lycra y modal liviano. Conjunto remera manga corta + pantalón largo. Color: rosa viejo con estampa de Hello Kitty. Suave, fresco y cóm Precio $ 28.000,00.
+- [Pijama Mafalda](https://www.ciledreams.com.ar/producto/pijama-mafalda-85/): Conjunto Mafalda Mundo Conjunto de modal con lycra, suave, fresco y cómodo. Incluye remera manga corta y pantalón largo con estampa de Mafal Precio $ 28.000,00.
+- [Pijama Labubu](https://www.ciledreams.com.ar/producto/pijama-labubu-88/): 🌙 Conjunto Labubu Remera manga corta y pantalón largo de modal con lycra, suave y cómodo. Estampado divertido de Labubu, ideal para descans Precio $ 23.000,00.
+- [Pijama Harry Potter ](https://www.ciledreams.com.ar/producto/pijama-harry-potter-89/): ⚡ Conjunto Harry Potter Remera manga corta y pantalón largo de modal con lycra, suave y cómodo. Estampado de Harry Potter, ideal para fans d Precio $ 28.000,00 (sin stock).
+- [Pijama Homero Argentina](https://www.ciledreams.com.ar/producto/pijama-homero-argentina-137/): 🏆 Pijama Mundialero Adulto – Edición 2026 ⚽ Este año el Mundial se vive en todos lados… ¡hasta en casa! 🇦🇷 Pijama con estampa full print  Precio $ 28.000,00.
+- [Pijama Bety Boop](https://www.ciledreams.com.ar/producto/pijama-bety-boop-139/): ❤️ Conjunto Betty – Edición Love ❤️ Clásico, femenino y con mucha actitud ✨ Con estampa full print de Betty Boop y detalles “LOVE” en toda l Precio $ 28.000,00.
+- [Pijama Hello Kitty rosa chicle](https://www.ciledreams.com.ar/producto/pijama-hello-kitty-rosa-chicle-140/): 🎀 Conjunto Hello Kitty – Rosa Clásico 🎀 Dulce, cómodo y lleno de estilo ✨ Con estampa full print de Hello Kitty sobre fondo rosa, es el co Precio $ 28.000,00 (sin stock).
+- [Pijama Hello Kitty Negro](https://www.ciledreams.com.ar/producto/pijama-hello-kitty-negro-141/): 🖤 Conjunto Hello Kitty – Negro Clásico 🖤 Un básico con personalidad ✨ Con estampa full print de Hello Kitty sobre fondo negro y detalles e Precio $ 28.000,00.
+- [Pijama Pato](https://www.ciledreams.com.ar/producto/pijama-pato-142/): 🐷 Conjunto Cerdito Rosa 🐷 Tierno, cómodo y perfecto para estar en casa ✨ Remera estampada con cerditos, confeccionada en modal con lycra,  Precio $ 28.000,00.
+- [Pijama Simpson](https://www.ciledreams.com.ar/producto/pijama-simpson-143/): 💛 Conjunto Simpsons – Blanco & Negro 💛 Comodidad con toda la actitud ✨ Remera liviana y suave, ideal para una caída cómoda y fresca. Combi Precio $ 28.000,00.
+
+## Musculosa y Short
+- [Pijama Hello Kitty](https://www.ciledreams.com.ar/producto/pijama-hello-kitty-47/): Tela: lycra y modal liviano. Conjunto musculosa + short. Color: blanco con estampa de Hello Kitty y detalles en rojo 🎀. Fresco, suave y cóm Precio $ 30.000,00.
+- [Pijama Stitch](https://www.ciledreams.com.ar/producto/pijama-stitch-48/): Tela: lycra y modal liviano. Conjunto musculosa + short. Color: celeste con detalles rosa. Fresco, suave y cómodo para dormir o disfrutar de Precio $ 30.000,00.
+- [Pijama Pantera Rosa](https://www.ciledreams.com.ar/producto/pijama-pantera-rosa-81/): Conjunto Pantera Rosa Conjunto de modal con lycra, liviano, suave y cómodo. Incluye musculosa y short con estampa completa de la Pantera Ros Precio $ 30.000,00.
+- [Pijama Mafalda](https://www.ciledreams.com.ar/producto/pijama-mafalda-82/): Conjunto Mafalda Conjunto de modal con lycra, suave, fresco y cómodo. Incluye musculosa y short con estampa completa de Mafalda. Ideal para  Precio $ 30.000,00.
+- [Pijama Flores](https://www.ciledreams.com.ar/producto/pijama-flores-83/): Conjunto Flores Retro Conjunto de modal con lycra, fresco, suave y cómodo. Incluye musculosa y short con estampa de flores grandes estilo re Precio $ 30.000,00.
+- [PIJAMA CHICAS SUPERPODEROSAS](https://www.ciledreams.com.ar/producto/pijama-chicas-superpoderosas-91/): 🌸 Conjunto Chicas Superpoderosas Dulce, cómodo y lleno de energía. Este conjunto está confeccionado en modal y lycra, suave al tacto y súpe Precio $ 30.000,00.
+
+## Remera y Short
+- [Remera + Short. Garfield](https://www.ciledreams.com.ar/producto/remera-short-garfield-51/): Tela: lycra y modal liviano. Color: naranja con estampa de Garfield 🍝. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Minnie](https://www.ciledreams.com.ar/producto/remera-short-minnie-52/): Tela: lycra y modal liviano. Color: blanco y gris con estampa de Minnie 🎀. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Chip y Dale](https://www.ciledreams.com.ar/producto/remera-short-chip-y-dale-53/): Tela: lycra y modal liviano. Color: fondo claro con estampa de Chip y Dale 🐿️. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Betty Boop](https://www.ciledreams.com.ar/producto/remera-short-betty-boop-54/): Tela: lycra y modal liviano. Color: rojo con estampa de Betty Boop 💋. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Chicas Superpoderosas](https://www.ciledreams.com.ar/producto/remera-short-chicas-superpoderosas-55/): Tela: lycra y modal liviano. Color: celeste con estampa de Bombón, Burbuja y Bellota 🌸. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Harry Potter](https://www.ciledreams.com.ar/producto/remera-short-harry-potter-56/): Tela: lycra y modal liviano. Color: remera blanca y short rojo con estampa de Harry Potter 🪄. Suave, fresco y cómodo para descansar o dormi Precio $ 30.000,00.
+- [Remera + Short. Lotso](https://www.ciledreams.com.ar/producto/remera-short-lotso-57/): Tela: lycra y modal liviano. Color: rosa con estampa de Lotso y frutillas 🍓🐻. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Chimuelo](https://www.ciledreams.com.ar/producto/remera-short-chimuelo-58/): Tela: lycra y modal liviano. Color: remera blanca y short negro con estampa de Chimuelo 🌙. Suave, fresco y cómodo para descansar o dormir ✨ Precio $ 30.000,00.
+- [Remera + Short. Mafalda](https://www.ciledreams.com.ar/producto/remera-short-mafalda-60/): Tela: lycra y modal liviano. Color: gris con estampa de Mafalda 🌈. Suave, fresco y cómodo para descansar o dormir 🌙. Precio $ 30.000,00.
+- [Remera + Short. Pato Lucas](https://www.ciledreams.com.ar/producto/remera-short-pato-lucas-61/): Tela: lycra y modal liviano. Color: blanco con estampa del Pato Lucas y short negro combinado 🦆. Fresco, divertido y cómodo para descansar  Precio $ 30.000,00.
+- [Remera + Short. Perritos](https://www.ciledreams.com.ar/producto/remera-short-perritos-62/): Tela: lycra y modal liviano. Color: naranja clarito con estampa de perritos y huesitos 🦴. Súper suave, fresco y cómodo para descansar o dor Precio $ 30.000,00.
+- [Remera + Short. Simba](https://www.ciledreams.com.ar/producto/remera-short-simba-63/): Tela: lycra y modal liviano. Color: naranja clarito con estampa de Simba 🧡. Súper suave, liviano y cómodo ✨. Precio $ 30.000,00.
+- [Remera + Short. Minnie](https://www.ciledreams.com.ar/producto/remera-short-minnie-74/): Conjunto Minnie Beige Conjunto de modal con lycra, suave, liviano y super cómodo. Incluye remera manga corta y short con estampa completa de Precio $ 30.000,00.
+- [Remera + Short. Gatita Mary](https://www.ciledreams.com.ar/producto/remera-short-gatita-mary-75/): Conjunto Gatita Marie Conjunto de modal con lycra, suave y fresco. Incluye remera y short con estampa completa de la gatita Marie. Tonos ros Precio $ 30.000,00.
+- [Remera + Short. Stitch](https://www.ciledreams.com.ar/producto/remera-short-stitch-76/): Conjunto Azul Stitch Conjunto de modal con lycra, suave, liviano y super cómodo. Incluye remera manga corta y short con estampa completa de  Precio $ 30.000,00.
+- [Remera + Short. Hello Kitty](https://www.ciledreams.com.ar/producto/remera-short-hello-kitty-77/): Conjunto Rosa Hello Kitty Conjunto de modal con lycra, suave, fresco y super cómodo. Incluye remera y short con estampa completa de Hello Ki Precio $ 30.000,00.
+- [Remera + Short. Gatitos](https://www.ciledreams.com.ar/producto/remera-short-gatitos-79/): Conjunto Gatitos Celeste Conjunto de modal con lycra, suave, liviano y muy cómodo. Incluye remera manga corta y short con estampa de gatitos Precio $ 30.000,00.
+- [Remera + Short. Snoopy](https://www.ciledreams.com.ar/producto/remera-short-snoopy-92/): 🐾 Conjunto Snoopy Comodidad y ternura en cada detalle. Este conjunto está hecho en modal y lycra, una tela liviana, elástica y muy suave, p Precio $ 30.000,00 (sin stock).
+
+## all
+- [Remera + Short. Osito](https://www.ciledreams.com.ar/producto/remera-short-osito-86/): 🧸 Pijama Ositos Rosa Conjunto de remera y short de modal con lycra, suave y liviano. Estampado tierno de ositos y corazones 💕 Ideal para d Precio $ 28.000,00.
+
+## Lona Playera
+- [LONA PLAYERA GUERRERAS K-POP CELESTE](https://www.ciledreams.com.ar/producto/lona-playera-guerreras-k-pop-celeste-96/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA GUERRERAS K-POP ROSA](https://www.ciledreams.com.ar/producto/lona-playera-guerreras-k-pop-rosa-97/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA INDEPENDIENTE](https://www.ciledreams.com.ar/producto/lona-playera-independiente-98/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00.
+- [LONA PLAYERA LILO Y STITCH](https://www.ciledreams.com.ar/producto/lona-playera-lilo-y-stitch-99/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA STITCH](https://www.ciledreams.com.ar/producto/lona-playera-stitch-100/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00.
+- [LONA PLAYERA FERNET](https://www.ciledreams.com.ar/producto/lona-playera-fernet-101/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA MARADONA](https://www.ciledreams.com.ar/producto/lona-playera-maradona-102/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA MAFALDA](https://www.ciledreams.com.ar/producto/lona-playera-mafalda-103/): Lona Playera 150x150 cm – Tropical, liviana y súper resistente Nuestra lona playera de 150 cm x 150 cm está confeccionada en tela tropical p Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA BOCA JUNIORS](https://www.ciledreams.com.ar/producto/lona-playera-boca-juniors-133/): Lona Playera CABJ – 150x150 cm Lona de tela tropical, resistente, lavable y reutilizable. No destiñe ni achica con el lavado. Medida 150 x 1 Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA CHARLY GARCIA](https://www.ciledreams.com.ar/producto/lona-playera-charly-garcia-134/): Lona de tela tropical, resistente, liviana y reutilizable. No destiñe ni achica con los lavados. Medida 150 x 150 cm, perfecta para usar en  Precio $ 18.000,00 (sin stock).
+- [LONA PLAYERA RACING](https://www.ciledreams.com.ar/producto/lona-playera-racing-135/): Lona Playera Racing – 150x150 cm Lona de tela tropical, liviana, resistente y reutilizable. No destiñe ni achica con el lavado. Medida 150 x Precio $ 18.000,00.
+
+## Maxitoallon
+- [MAXITOALLON INDEPENDIENTE](https://www.ciledreams.com.ar/producto/maxitoallon-independiente-104/): Maxitoallón Sublimado 150x150 cm – Suave, gigante y de alta calidad Nuestros maxitoallones de microtoalla sublimada están diseñados para aco Precio $ 25.000,00.
+- [MAXITOALLON CHARLY GARCIA](https://www.ciledreams.com.ar/producto/maxitoallon-charly-garcia-105/): Maxitoallón Sublimado 150x150 cm – Suave, gigante y de alta calidad Nuestros maxitoallones de microtoalla sublimada están diseñados para aco Precio $ 25.000,00 (sin stock).
+- [MAXITOALLON RIVER](https://www.ciledreams.com.ar/producto/maxitoallon-river-106/): Maxitoallón Sublimado 150x150 cm – Suave, gigante y de alta calidad Nuestros maxitoallones de microtoalla sublimada están diseñados para aco Precio $ 25.000,00 (sin stock).
+- [MAXITOALLON LILO Y STITCH](https://www.ciledreams.com.ar/producto/maxitoallon-lilo-y-stitch-107/): Maxitoallón Sublimado 150x150 cm – Suave, gigante y de alta calidad Nuestros maxitoallones de microtoalla sublimada están diseñados para aco Precio $ 25.000,00.
+- [MAXITOALLON STITCH](https://www.ciledreams.com.ar/producto/maxitoallon-stitch-109/): Maxitoallón Sublimado 150x150 cm – Suave, gigante y de alta calidad Nuestros maxitoallones de microtoalla sublimada están diseñados para aco Precio $ 25.000,00 (sin stock).
+- [MAXITOALLON MINNI](https://www.ciledreams.com.ar/producto/maxitoallon-minni-110/): Maxitoallón Sublimado 150x150 cm – Suave, gigante y de alta calidad Nuestros maxitoallones de microtoalla sublimada están diseñados para aco Precio $ 25.000,00 (sin stock).
+- [MAXITOALLON HARRY POTTER](https://www.ciledreams.com.ar/producto/maxitoallon-harry-potter-136/): Maxitoallón Hogwarts – 150x150 cm Maxitoallón de microtoalla sublimada, apto lavarropas, no decolora ni achica. Medida 150 x 150 cm, súper g Precio $ 25.000,00.
+
+## Pijamas para niños
+- [Pijama para niños Boca Juniors](https://www.ciledreams.com.ar/producto/pijama-para-ninos-boca-juniors-121/): Pijama CABJ – Brilla en la oscuridad ✨ Pijama de algodón peinado, suave y cómodo. La estampa brilla en la oscuridad, ideal para los fanático Precio $ 25.000,00.
+- [Pijamas para niños capibara](https://www.ciledreams.com.ar/producto/pijamas-para-ninos-capibara-122/): Pijama Capybara – Algodón peinado 🧡 Pijama súper suave de algodón peinado, ideal para los peques. Estampa tierna de capibaras y short a jue Precio $ 25.000,00.
+- [pijama niño capibara pink](https://www.ciledreams.com.ar/producto/pijama-nino-capibara-pink-123/): Pijama Capybara Pink – Algodón peinado 🌸 Pijama suavecito de algodón peinado, súper cómodo y fresco. Estampa adorable de capybara con bubbl Precio $ 25.000,00.
+- [Pijama niño Harry Potter](https://www.ciledreams.com.ar/producto/pijama-nino-harry-potter-124/): Pijama Harry – Algodón peinado Pijama de algodón peinado, suave y cómodo. Diseño infantil inspirado en la magia, con remera estampada y shor Precio $ 25.000,00.
+- [Pijama niños K-POP](https://www.ciledreams.com.ar/producto/pijama-ninos-k-pop-125/): Pijama K-Pop – Algodón peinado 🎤✨ Pijama súper suave de algodón peinado, cómodo y fresco. Diseño colorido inspirado en el mundo K-Pop, con  Precio $ 25.000,00.
+- [Pijama niño Jurassic](https://www.ciledreams.com.ar/producto/pijama-nino-jurassic-126/): Pijama Jurassic – Algodón peinado Pijama de algodón peinado, suave y cómodo. Diseño clásico de Jurassic con remera estampada y short a juego Precio $ 25.000,00.
+- [Pijama niño Kuromi](https://www.ciledreams.com.ar/producto/pijama-nino-kuromi-127/): Pijama Kuromi – Algodón peinado Pijama de algodón peinado, suave y cómodo. Diseño adorable de Kuromi con remera estampada y short combinado. Precio $ 25.000,00.
+- [Pijama Niños River](https://www.ciledreams.com.ar/producto/pijama-ninos-river-128/): Pijama CARP – Algodón peinado Pijama de algodón peinado, suave y cómodo. Diseño de River con remera estampada y short a juego. ¡Excelente ca Precio $ 25.000,00.
+- [Pijama niños Saja Boys](https://www.ciledreams.com.ar/producto/pijama-ninos-saja-boys-129/): Pijama Saja Boys – Algodón peinado Pijama de algodón peinado, suave y súper cómodo. Diseño colorido inspirado en el estilo K-Pop, con remera Precio $ 25.000,00.
+- [Pijama niño Tung Tung](https://www.ciledreams.com.ar/producto/pijama-nino-tung-tung-130/): Pijama Tung Tung – Algodón peinado Pijama de algodón peinado, suave y súper cómodo. Diseño divertido de Tung Tung con short estampado a jueg Precio $ 25.000,00 (sin stock).
+- [Pijama niño Pikachu](https://www.ciledreams.com.ar/producto/pijama-nino-pikachu-131/): Pijama Pikachu – Algodón peinado Pijama de algodón peinado, suave y súper cómodo. Diseño de Pikachu con remera estampada y short a juego. ¡E Precio $ 25.000,00.
+- [Pijama niño morley Hello Kitty](https://www.ciledreams.com.ar/producto/pijama-nino-morley-hello-kitty-132/): Pijama Hello Kitty – Morley Premium Conjunto de morley premium, súper suave, fresco y elástico. Musculosa y short combinados con estampa ado Precio $ 15.000,00.
+
+## Camisero con pantalón largo
+- [Camisero Palta](https://www.ciledreams.com.ar/producto/camisero-palta-146/): Pijama Camisero Palta – Modal con Lycra Conjunto de camisa manga corta con botones y pantalón largo con cintura elastizada. Confeccionado en Precio $ 36.500,00.
+- [Hello kitty negro](https://www.ciledreams.com.ar/producto/hello-kitty-negro-147/): Pijama Camisero Hello Kitty – Modal con Lycra Conjunto de camisa manga corta con botones y pantalón largo con cintura elastizada. Confeccion Precio $ 36.500,00 (sin stock).
+- [Snoopy ](https://www.ciledreams.com.ar/producto/snoopy-149/): Pijama Camisero Snoopy – Modal con Lycra Conjunto de camisa manga corta con botones y pantalón largo con cintura elastizada. Confeccionado e Precio $ 36.500,00.
+
+## Pijama de niño invierno
+- [Bob esponja](https://www.ciledreams.com.ar/producto/bob-esponja-154/): Pijama infantil Bob Esponja – Modal con lycra Pijama súper cómodo para niños, confeccionado en modal con lycra, una tela suave, liviana y fl Precio $ 22.500,00.
+- [Harry Potter](https://www.ciledreams.com.ar/producto/harry-potter-155/): Pijama infantil Harry Potter – Modal con lycra Pijama para niños confeccionado en modal con lycra, una tela suave, liviana y elástica que br Precio $ 22.500,00 (sin stock).
+- [Minnie](https://www.ciledreams.com.ar/producto/minnie-156/): Pijama infantil Minnie – Modal con lycra Pijama para niños confeccionado en modal con lycra, una tela suave, liviana y elástica que brinda m Precio $ 22.500,00.
+- [Pokemon](https://www.ciledreams.com.ar/producto/pokemon-158/): Pijama infantil Pokémon – Modal con lycra Pijama para niños confeccionado en modal con lycra, una tela suave, liviana y elástica que brinda  Precio $ 22.500,00.
+- [Snoopy](https://www.ciledreams.com.ar/producto/snoopy-159/): Pijama infantil Snoopy – Modal con lycra Pijama para niños confeccionado en modal con lycra, una tela suave, liviana y elástica que brinda m Precio $ 22.500,00.
+- [Hello Kitty](https://www.ciledreams.com.ar/producto/hello-kitty-160/): Pijama infantil Hello Kitty – Modal con lycra Pijama para niños confeccionado en modal con lycra, una tela suave, liviana y elástica que bri Precio $ 22.500,00.
+- [Hombre Araña](https://www.ciledreams.com.ar/producto/hombre-arana-161/): Pantalón infantil con estampa de Spiderman. Cómodo, suave y ideal para uso diario o descanso. Diseño divertido que a los chicos les encanta. Precio $ 22.500,00.
+- [Messi](https://www.ciledreams.com.ar/producto/messi-162/): Pantalón infantil con estampa futbolera de Messi. Súper cómodo, suave y ideal para uso diario o descanso. Diseño divertido para los más chic Precio $ 22.500,00.
+- [Stitch](https://www.ciledreams.com.ar/producto/stitch-163/): Pijama infantil con estampa de Stitch. Súper cómodo, suave y abrigado, ideal para descansar o estar en casa. Diseño que encanta a los chicos Precio $ 30.000,00 (sin stock).
+
+## Pijamas manga larga
+- [Stitch pantalón frisado](https://www.ciledreams.com.ar/producto/stitch-pantalon-frisado-164/): Pijama de invierno para adultos, compuesto por remera de manga larga y pantalón largo frisado con bolsillos. Confeccionado en tela suave y a Precio $ 30.000,00.
+- [Rugrats pantalón frisado ](https://www.ciledreams.com.ar/producto/rugrats-pantalon-frisado-165/): Pijama de invierno para adultos con estampa divertida, compuesto por remera de manga larga y pantalón largo frisado con bolsillos. Súper cóm Precio $ 30.000,00.
+- [Hello Kitty pantalón frisado](https://www.ciledreams.com.ar/producto/hello-kitty-pantalon-frisado-167/): Pijama de invierno para adultos con estampa divertida, compuesto por remera de manga larga y pantalón largo frisado con bolsillos. Súper cóm Precio $ 30.000,00.
+- [Perritos pantalón frisado](https://www.ciledreams.com.ar/producto/perritos-pantalon-frisado-168/): Pijama de invierno para adultos con estampa divertida, compuesto por remera de manga larga y pantalón largo frisado con bolsillos. Súper cóm Precio $ 30.000,00.
+- [Pijama otoñal Hello Kitty](https://www.ciledreams.com.ar/producto/pijama-otonal-hello-kitty-174/): Pijama de invierno en modal con lycra, suave y cómodo. Remera manga larga y pantalón largo con bolsillos. Diseño de Hello Kitty, ideal para  Precio $ 30.000,00.
+- [Pijama otoñal Minnie](https://www.ciledreams.com.ar/producto/pijama-otonal-minnie-175/): Pijama de invierno en modal con lycra, suave y cómodo. Remera manga larga y pantalón largo con bolsillos. Diseño de Minnie, ideal para estar Precio $ 30.000,00.
+- [Pijama otoñal Snoopy](https://www.ciledreams.com.ar/producto/pijama-otonal-snoopy-176/): Pijama de invierno en modal con lycra, suave y cómodo. Remera manga larga y pantalón largo con bolsillos. Diseño de Snoopy, ideal para estar Precio $ 30.000,00.
+- [Pijama Otoñal flores](https://www.ciledreams.com.ar/producto/pijama-otonal-flores-177/): Pijama de invierno en modal con lycra, suave y cómodo. Remera manga larga y pantalón largo con bolsillos. Diseño floral, ideal para estar có Precio $ 30.000,00.
+- [Pijama otoñal Stitch](https://www.ciledreams.com.ar/producto/pijama-otonal-stitch-178/): Pijama de invierno en modal con lycra, suave y cómodo. Remera manga larga y pantalón largo con bolsillos. Diseño de Stitch, ideal para estar Precio $ 30.000,00.
+- [Hello Kitty pantalón frisado](https://www.ciledreams.com.ar/producto/hello-kitty-pantalon-frisado-196/): Pijama Hello Kitty en modal con lycra. Súper suave, con una caída hermosa y muy cómodo para descansar. Pantalón frisado con bolsillos, ideal Precio $ 30.000,00.
+- [Stitch pantalon frisado](https://www.ciledreams.com.ar/producto/stitch-pantalon-frisado-197/): Pijama Stitch en modal con lycra. Súper suave, con una caída hermosa y muy cómodo para descansar. Pantalón frisado con bolsillos, ideal para Precio $ 30.000,00.
+- [Perritos](https://www.ciledreams.com.ar/producto/perritos-198/): Pijama Perritos en modal con lycra. Súper suave, con una caída hermosa y muy cómodo para descansar. Pantalón con bolsillos y cintura elastiz Precio $ 30.000,00.
+- [Gatitos](https://www.ciledreams.com.ar/producto/gatitos-199/): Pijama Gatitos en modal con lycra. Súper suave, con una caída hermosa y muy cómodo para descansar. Pantalón con bolsillos y cintura elastiza Precio $ 30.000,00.
+- [Osito cariñosito gruñon pantalón frisado](https://www.ciledreams.com.ar/producto/osito-carinosito-grunon-pantalon-frisado-200/): Pijama Osito Cariñosito en modal con lycra. Súper suave, con una caída hermosa y muy cómodo para descansar. Pantalón frisado con bolsillos,  Precio $ 30.000,00.
+- [Mafalda](https://www.ciledreams.com.ar/producto/mafalda-203/): Pijama Mafalda Comodidad y ternura en un solo conjunto. Con el clásico estampado de Mafalda y detalles de corazones, es ideal para disfrutar Precio $ 30.000,00.
+- [Minnie remera blaca pantalon rosa](https://www.ciledreams.com.ar/producto/minnie-remera-blaca-pantalon-rosa-204/): Pijama Minnie Un conjunto súper tierno y cómodo para disfrutar de tus momentos de descanso. Con estampa de Minnie y una combinación de color Precio $ 30.000,00.
+- [Snoopy Negro pantalón frisado](https://www.ciledreams.com.ar/producto/snoopy-negro-pantalon-frisado-206/): Conjunto de remera manga larga y pantalón frisado, súper suave, cómodo y abrigado. Ideal para disfrutar los días fríos con todo el estilo de Precio $ 30.000,00.
+- [Snoopy Negro](https://www.ciledreams.com.ar/producto/snoopy-negro-207/): Conjunto de remera manga larga y pantalón de tela suave y cómoda. Ideal para dormir y relajarse con todo el estilo de Snoopy Precio $ 30.000,00.
+- [Minnie Gris](https://www.ciledreams.com.ar/producto/minnie-gris-208/): Conjunto de remera manga larga y pantalón de tela suave, cómodo y liviano. Un diseño súper tierno y femenino, ideal para descansar con estil Precio $ 30.000,00.
+
+## Camiseros manga larga
+- [Paltas](https://www.ciledreams.com.ar/producto/paltas-170/): Conjunto de pijama de invierno con estampa de paltas, compuesto por camisa manga larga abotonada y pantalón largo con cintura elástica. Súpe Precio $ 39.000,00.
+- [Snoopy Rayado](https://www.ciledreams.com.ar/producto/snoopy-rayado-171/): Conjunto de pijama de invierno con estampa de paltas, compuesto por camisa manga larga abotonada y pantalón largo con cintura elástica. Súpe Precio $ 52.000,00 (sin stock).
+- [Snoopy Negro](https://www.ciledreams.com.ar/producto/snoopy-negro-172/): Conjunto de pijama de invierno con estampa de paltas, compuesto por camisa manga larga abotonada y pantalón largo con cintura elástica. Súpe Precio $ 52.000,00 (sin stock).
+- [Hello Kitty](https://www.ciledreams.com.ar/producto/hello-kitty-173/): Conjunto de pijama de invierno con estampa de paltas, compuesto por camisa manga larga abotonada y pantalón largo con cintura elástica. Súpe Precio $ 39.000,00.
+- [STITCH](https://www.ciledreams.com.ar/producto/stitch-201/): Pijama camisero Stitch Suave, cómodo y con toda la onda. Confeccionado en tela liviana y fresca, ideal para descansar o disfrutar de un día  Precio $ 39.000,00.
+- [Minnie](https://www.ciledreams.com.ar/producto/minnie-202/): Pijama camisero Minnie Dulce, cómodo y súper femenino. Con un estampado encantador de Minnie, es ideal para descansar con estilo y disfrutar Precio $ 39.000,00.
+
+## Pantalón Polar Niño
+- [MESSI](https://www.ciledreams.com.ar/producto/messi-181/): Pantalón polar de Messi, abrigado y súper cómodo. Tela suave al tacto con cintura elastizada. Ideal para dormir o estar en casa, con diseño  Precio $ 15.000,00 (sin stock).
+- [Stitch](https://www.ciledreams.com.ar/producto/stitch-182/): Pantalón polar de Stitch, súper abrigado y cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa. Diseño divertido y  Precio $ 20.000,00 (sin stock).
+- [Hello Kitty](https://www.ciledreams.com.ar/producto/hello-kitty-183/): Pantalón polar de Hello Kitty, abrigado y súper cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa, con diseño tie Precio $ 15.000,00.
+
+## Pantalón Polar Adulto
+- [MESSI](https://www.ciledreams.com.ar/producto/messi-184/): Pantalón polar de Messi, abrigado y súper cómodo. Tela suave al tacto con cintura elastizada. Ideal para dormir o estar en casa, con diseño  Precio $ 25.000,00 (sin stock).
+- [MAFALDA](https://www.ciledreams.com.ar/producto/mafalda-185/): Pantalón polar de Mafalda, abrigado y súper cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa, con diseño diverti Precio $ 18.500,00.
+- [Hello Kitty](https://www.ciledreams.com.ar/producto/hello-kitty-186/): Pantalón polar de Hello Kitty, abrigado y súper cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa, con diseño tie Precio $ 25.000,00 (sin stock).
+- [MINNIE](https://www.ciledreams.com.ar/producto/minnie-187/): Pantalón polar de Minnie, abrigado y súper cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa, con diseño tierno y Precio $ 25.000,00 (sin stock).
+- [Snoopy Negro](https://www.ciledreams.com.ar/producto/snoopy-negro-188/): Pantalón polar de Snoopy, abrigado y súper cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa, con diseño canchero Precio $ 25.000,00 (sin stock).
+- [STITCH](https://www.ciledreams.com.ar/producto/stitch-189/): Pantalón polar de Stitch, abrigado y súper cómodo. Tela suave con cintura elastizada. Ideal para dormir o estar en casa, con diseño divertid Precio $ 18.500,00.
+
+## Pijamas linea PP
+- [Perro salchica](https://www.ciledreams.com.ar/producto/perro-salchica-190/): Conjunto de pijama de modal soft, súper suave al tacto y con excelente caída. Incluye remera de manga larga y pantalón largo, ambos con esta Precio $ 32.000,00.
+- [Animal Print rosa](https://www.ciledreams.com.ar/producto/animal-print-rosa-191/): Conjunto de pijama de modal soft, suave y delicado al tacto, con excelente caída. Incluye remera de manga larga y pantalón largo con estampa Precio $ 32.000,00.
+- [Gatitos](https://www.ciledreams.com.ar/producto/gatitos-192/): Conjunto de pijama de modal soft, súper suave y cómodo, con una caída liviana y flexible. Incluye remera de manga larga y pantalón largo con Precio $ 32.000,00.
+- [Jirafas](https://www.ciledreams.com.ar/producto/jirafas-193/): Conjunto de pijama de modal soft, suave y liviano, con excelente caída y elasticidad. Incluye remera de manga larga y pantalón largo con est Precio $ 32.000,00.
+- [Camisero negro](https://www.ciledreams.com.ar/producto/camisero-negro-194/): Pijama camisero de modal soft color negro, suave, liviano y con una caída impecable. Incluye camisa manga larga con botones y cuello clásico Precio $ 50.000,00 (sin stock).
+- [Polar negro](https://www.ciledreams.com.ar/producto/polar-negro-195/): Conjunto de pijama de polar, súper abrigado y suave al tacto. Incluye remera manga larga y pantalón tipo babucha con cintura elastizada. Ide Precio $ 43.000,00 (sin stock).

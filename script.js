@@ -34,26 +34,18 @@ async function fetchProducts() {
   }
 }
 
-// Nota: Esta función renderProducts SÓLO se usará para 'featuredProducts'
-// ya que applyFilters ahora maneja el renderizado paginado para 'productsGrid'
-function renderProducts(productsToShow, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+function productSlug(p) {
+  const base = String(p.name || 'producto')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return `${base}-${p.id}`;
+}
 
-  const noResults = document.getElementById("noResults");
+function productUrl(p) {
+  return `/producto/${productSlug(p)}/`;
+}
 
-  if (productsToShow.length === 0) {
-    if (noResults) {
-      container.innerHTML = ''; // Limpiar la grilla
-      noResults.style.display = "block";
-    }
-    return;
-  }
-  
-  if (noResults) noResults.style.display = "none";
-
-  container.innerHTML = productsToShow.map(product => {
-    
+function buildProductCard(product) {
     // --- LÓGICA DE TALLES Y STOCK ---
     let totalStock = 0;
     let sizeOptions = '';
@@ -97,7 +89,7 @@ function renderProducts(productsToShow, containerId) {
             ${isOutOfStock ? `<span class="product-badge-stock">Sin Stock</span>` : ""}
         </div>
         <div class="product-info">
-            <h3 class="product-title">${product.name}</h3>
+            <h3 class="product-title"><a href="${productUrl(product)}">${product.name}</a></h3>
             <p class="product-description">${product.description}</p>
             <p class="product-price">${formatPrice(product.price)}</p>
             
@@ -116,13 +108,34 @@ function renderProducts(productsToShow, containerId) {
                 >
                     ${isOutOfStock ? 'Sin Stock' : 'Agregar al Carrito'}
                 </button>
+                <a href="${productUrl(product)}" class="btn btn-secondary">Ver detalle</a>
                 <a href="https://wa.me/5491158626516?text=Hola!%20Me%20interesa%20el%20${encodeURIComponent(product.name)}" 
                    class="btn btn-secondary" target="_blank">Consultar</a>
             </div>
         </div>
     </div>
     `;
-  }).join('');
+}
+
+// Nota: Esta función renderProducts SÓLO se usará para 'featuredProducts'
+// ya que applyFilters ahora maneja el renderizado paginado para 'productsGrid'
+function renderProducts(productsToShow, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const noResults = document.getElementById("noResults");
+
+  if (productsToShow.length === 0) {
+    if (noResults) {
+      container.innerHTML = ''; // Limpiar la grilla
+      noResults.style.display = "block";
+    }
+    return;
+  }
+  
+  if (noResults) noResults.style.display = "none";
+
+  container.innerHTML = productsToShow.map(buildProductCard).join('');
 }
 
 function updateCartCount() {
@@ -229,76 +242,7 @@ function applyFilters(isNewFilter = true) {
     if (noResults) noResults.style.display = "none";
 
     // Generar el HTML para el nuevo lote de productos
-    const newProductsHtml = productsToShow.map(product => {
-      
-      // --- LÓGICA DE TALLES Y STOCK REPETIDA (para consistencia) ---
-      let totalStock = 0;
-      let sizeOptions = '';
-
-      if (product.category === 'Pijamas para niños') {
-          totalStock = (product.stock_6 || 0) + (product.stock_8 || 0) + (product.stock_10 || 0) + 
-                       (product.stock_12 || 0) + (product.stock_14 || 0) + (product.stock_16 || 0);
-          
-          sizeOptions = `
-              ${product.stock_6 > 0 ? '<option value="6">6</option>' : ''}
-              ${product.stock_8 > 0 ? '<option value="8">8</option>' : ''}
-              ${product.stock_10 > 0 ? '<option value="10">10</option>' : ''}
-              ${product.stock_12 > 0 ? '<option value="12">12</option>' : ''}
-              ${product.stock_14 > 0 ? '<option value="14">14</option>' : ''}
-              ${product.stock_16 > 0 ? '<option value="16">16</option>' : ''}
-          `;
-      } else if (['Maxitoallon', 'Lona Playera'].includes(product.category)) {
-           totalStock = product.stock_s || 0; 
-           sizeOptions = product.stock_s > 0 ? '<option value="U">Único</option>' : '';
-      } else {
-          totalStock = (product.stock_s || 0) + (product.stock_m || 0) + 
-                       (product.stock_l || 0) + (product.stock_xl || 0);
-          
-          sizeOptions = `
-              ${product.stock_s > 0 ? '<option value="S">1</option>' : ''}
-              ${product.stock_m > 0 ? '<option value="M">2</option>' : ''}
-              ${product.stock_l > 0 ? '<option value="L">3</option>' : ''}
-              ${product.stock_xl > 0 ? '<option value="XL">4</option>' : ''}
-          `;
-      }
-      // -------------------------------------------------------------
-
-      const isOutOfStock = totalStock === 0;
-      
-      return `
-      <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}">
-          <div class="product-image js-open-modal" data-image-url="${product.image_url}" data-alt-text="${product.name}">
-              <img src="${product.image_url}" alt="${product.name}">
-              ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
-              ${isOutOfStock ? `<span class="product-badge-stock">Sin Stock</span>` : ""}
-          </div>
-          <div class="product-info">
-              <h3 class="product-title">${product.name}</h3>
-              <p class="product-description">${product.description}</p>
-              <p class="product-price">${formatPrice(product.price)}</p>
-              
-              <div class="product-size-selector ${isOutOfStock ? 'hidden' : ''}">
-                  <label for="size-${product.id}">Talle:</label>
-                  <select id="size-${product.id}" class="filter-select">
-                      ${sizeOptions.trim() === '' ? '<option disabled>Sin stock</option>' : sizeOptions}
-                  </select>
-              </div>
-
-              <div class="product-actions">
-                  <button 
-                      class="btn btn-primary js-add-to-cart" 
-                      data-product-id="${product.id}" 
-                      ${isOutOfStock ? 'disabled' : ''}
-                  >
-                      ${isOutOfStock ? 'Sin Stock' : 'Agregar al Carrito'}
-                  </button>
-                  <a href="https://wa.me/5491158626516?text=Hola!%20Me%20interesa%20el%20${encodeURIComponent(product.name)}" 
-                     class="btn btn-secondary" target="_blank">Consultar</a>
-              </div>
-          </div>
-      </div>
-      `;
-    }).join('');
+    const newProductsHtml = productsToShow.map(buildProductCard).join('');
 
     container.insertAdjacentHTML('beforeend', newProductsHtml); // Agregar al final
     productsOffset += productsToShow.length;
