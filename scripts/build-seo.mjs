@@ -223,7 +223,7 @@ function sitemap(products, today) {
     ...STATIC_PAGES.map((s) => `  <url><loc>${SITE}${s.path}</loc><lastmod>${today}</lastmod><changefreq>${s.changefreq}</changefreq><priority>${s.priority}</priority></url>`),
     ...products.map((p) => {
       const last = (p.created_at || today).slice(0, 10);
-      return `  <url><loc>${SITE}/producto/${productSlug(p)}/</loc><lastmod>${today > last ? today : last}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><image:image><image:loc>${esc(p.image_url)}</image:loc><image:title>${esc(p.name)}</image:title></image:image></url>`;
+      return `  <url><loc>${SITE}/producto/${productSlug(p)}/</loc><lastmod>${last}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><image:image><image:loc>${esc(p.image_url)}</image:loc><image:title>${esc(p.name)}</image:title></image:image></url>`;
     }),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -294,7 +294,8 @@ ${items}
 
 async function main() {
   const products = await fetchProducts();
-  const today = new Date().toISOString().slice(0, 10);
+  // Fecha determinística (último producto cargado) para no generar cambios vacíos en cada build
+  const today = products.map((p) => (p.created_at || '').slice(0, 10)).sort().pop() || '2025-11-03';
 
   const outDir = path.join(ROOT, 'producto');
   await rm(outDir, { recursive: true, force: true });
